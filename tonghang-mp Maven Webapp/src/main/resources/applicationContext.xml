@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xmlns:mvc="http://www.springframework.org/schema/mvc"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans     
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/mvc 
+	  http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+    <context:property-placeholder location="classpath:db.properties" />
+
+    <!-- 配置数据源 -->
+	<bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driverClassName}" />
+	      <property name="jdbcUrl" value="${jdbc.url}" />
+	      <property name="user" value="${jdbc.username}" />
+	      <property name="password" value="${jdbc.password}" /> 
+	      <property name="idleConnectionTestPeriod" value="${c3p0.idleConnectionTestPeriod}"/>
+ 		<property name="initialPoolSize" value="${c3p0.initialPoolSize}"/>
+ 		<property name="maxIdleTime" value="${c3p0.maxIdleTime}"/>
+ 		<property name="maxPoolSize" value="${c3p0.maxPoolSize}"/>
+ 		<property name="maxStatements" value="${c3p0.maxStatements}"/>
+ 		<property name="maxStatementsPerConnection" value="${c3p0.maxStatementsPerConnection}"/>
+ 		<property name="minPoolSize" value="${c3p0.minPoolSize}"/>
+	</bean>
+
+	<!-- myBatis文件 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<!-- 自动扫描entity目录, 省掉Configuration.xml里的手工配置 -->
+		<property name="mapperLocations" value="classpath:com/tonghang/manage/*/mapping/*.xml" />
+		<property name="plugins">
+		    <array>
+		        <bean class="com.github.pagehelper.PageHelper">
+			        <property name="properties">
+				        <value>
+				        	dialect=mysql
+				        </value>
+			        </property>
+		        </bean>
+		    </array>
+	    </property>
+	</bean>
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.tonghang.manage.*.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<!-- 配置事务管理器 -->
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+<!--<mvc:interceptors>  
+	    <mvc:interceptor>  
+		    <mvc:mapping path="/jsp/*" /> 
+		    <mvc:mapping path="/admin/index" /> 
+		    <mvc:mapping path="/admin/updatePassword" /> 
+		    <mvc:mapping path="/admin/logout" /> 
+		    <mvc:mapping path="/user/*" />
+		    <bean class="com.tonghang.manage.common.interceptor.MainIntercrptor" />  
+	    </mvc:interceptor>  
+	</mvc:interceptors>     -->	 
+	<!-- 
+	<tx:advice id="transactionAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="append*" propagation="REQUIRED" />
+			<tx:method name="insert*" propagation="REQUIRED" />
+			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="update*" propagation="REQUIRED" />
+			<tx:method name="modify*" propagation="REQUIRED" />
+			<tx:method name="edit*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="repair" propagation="REQUIRED" />
+			<tx:method name="delAndRepair" propagation="REQUIRED" />
+
+			<tx:method name="get*" propagation="SUPPORTS" />
+			<tx:method name="find*" propagation="SUPPORTS" />
+			<tx:method name="load*" propagation="SUPPORTS" />
+			<tx:method name="search*" propagation="SUPPORTS" />
+			<tx:method name="datagrid*" propagation="SUPPORTS" />
+
+			<tx:method name="*" propagation="SUPPORTS" />
+		</tx:attributes>
+	</tx:advice>拦截器方式配置事物 -->
+	<aop:config>
+		<aop:pointcut id="transactionPointcut" expression="execution(* com.tonghang.manage.*.service..*(..))" />
+		<aop:advisor pointcut-ref="transactionPointcut" advice-ref="transactionManager" />
+	</aop:config>
+
+</beans>  

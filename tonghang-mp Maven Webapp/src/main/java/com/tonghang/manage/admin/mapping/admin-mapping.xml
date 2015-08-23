@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tonghang.manage.admin.dao.AdminMapper" >
+
+	<insert id="add" parameterType="com.tonghang.manage.admin.pojo.Admin">
+		insert into admin (admin_id,id_card,name,password,province,city,email,phone,power)
+			values(#{admin_id},#{id_card},#{name},#{password},#{province},#{city},#{email},#{phone},#{power})
+	</insert>
+	<select id="findAdminById" resultType="com.tonghang.manage.admin.pojo.Admin">
+		select * from admin where admin_id = #{admin_id}
+	</select>
+	<select id="findAdminByEmail" resultType="com.tonghang.manage.admin.pojo.Admin">
+		select * from admin where email = #{email}
+	</select>
+	<select id="findAdminByPhone" resultType="com.tonghang.manage.admin.pojo.Admin">
+		select * from admin where phone = #{phone}
+	</select>
+	<select id="findAdmin" parameterType="com.tonghang.manage.admin.pojo.Admin" resultType="com.tonghang.manage.admin.pojo.Admin">
+		select * from admin 
+		<where>
+			1 = 1 
+			<if test="power != null and power != 0">
+				and power = #{power}  		
+			</if>
+			<if test="id_card != null and id_card != ''">
+				and id_card = #{id_card}
+			</if>
+			<if test="name != null and name != ''">
+				and name =#{name}
+			</if>
+			<if test="city != null and city != ''">
+				and city = #{city}
+			</if>
+			<if test="email != null and email != ''">
+				and email = #{email}
+			</if>
+			<if test="phone != null and phone != ''">
+				and phone = #{phone}
+			</if>
+		</where>
+	</select>
+	<select id="findAllAdmin" resultType="com.tonghang.manage.admin.pojo.Admin">
+		select * from admin 
+	</select>
+	<select id="adminNumbers" resultType="int">
+		select count(*) from admin;
+	</select>
+	<select id="adminNumbersByAttribute" parameterType="com.tonghang.manage.admin.pojo.Admin" resultType="int">
+		select count(*) from admin 
+		<where>
+			1 = 1 
+			<if test="power != null and power != 0">
+				and power = #{power}  		
+			</if>
+			<if test="id_card != null and id_card != ''">
+				and id_card = #{id_card}
+			</if>
+			<if test="name != null and name != ''">
+				and name =#{name}
+			</if>
+			<if test="city != null and city != ''">
+				and city = #{city}
+			</if>
+			<if test="email != null and email != ''">
+				and email = #{email}
+			</if>
+			<if test="phone != null and phone != ''">
+				and phone = #{phone}
+			</if>
+		</where>
+	</select>
+	<update id="update" parameterType="com.tonghang.manage.admin.pojo.Admin">
+		update admin
+		<set>
+			<if test="power != null and power != ''">
+				power = #{power},  		
+			</if>
+			<if test="name != null and name != ''">
+				name =#{name},
+			</if>
+			<if test="city != null and city != ''">
+				city = #{city},
+			</if>
+			<if test="email != null and email != ''">
+				email = #{email},
+			</if>
+			<if test="phone != null and phone != ''">
+				phone = #{phone},
+			</if>
+			<if test="password != null and password != ''">
+				password =#{password},
+			</if>
+		</set>
+		where admin_id = #{admin_id}
+	</update>
+	<delete id="delete" parameterType="java.lang.String">
+		delete from admin where admin_id = #{admin_id}
+	</delete>
+</mapper>

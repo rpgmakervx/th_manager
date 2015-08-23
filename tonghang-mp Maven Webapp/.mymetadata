@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="tonghang-mp Maven Webapp"
+  id="myeclipse.1438943775929"
+  context-root="/tonghang"
+  j2ee-spec="6.0"
+  archive="tonghang-mp Maven Webapp.war">
+  <attributes>
+    <attribute name="webrootdir" value="src/main/webapp" />
+  </attributes>
+</project-module>
+

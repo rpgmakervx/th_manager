@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tonghang.manage.feedback.dao.FeedBackMapper" >
+
+	<select id="findAllFeedBacks" resultType="com.tonghang.manage.feedback.pojo.FeedBack">
+		select * from feedbacks order by created_at desc
+	</select>
+	<select id="getCount" resultType="int">
+		select count(*) from feedbacks order by created_at desc
+	</select>
+	<select id="findFeedBacksByUser" parameterType="java.lang.String" resultType="com.tonghang.manage.feedback.pojo.FeedBack">
+		select * from feedbacks as fb,users as u 
+		where fb.client_id = u.client_id and 
+		upper(u.username) like concat('%',upper(#{username}),'%') 
+		order by fb.created_at desc
+	</select>
+	<select id="getCountByUser" resultType="int" parameterType="java.lang.String" >
+		select count(*) from feedbacks as fb,users as u 
+		where fb.client_id = u.client_id and 
+		upper(u.username) like concat('%',upper(#{username}),'%') 
+		order by fb.created_at desc
+	</select>
+</mapper>

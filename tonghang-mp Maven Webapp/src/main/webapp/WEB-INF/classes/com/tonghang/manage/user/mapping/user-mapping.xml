@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tonghang.manage.user.dao.UserMapper" >
+
+	<select id="findUserById" resultType="com.tonghang.manage.user.pojo.User">
+		select * from users where client_id = #{client_id}
+	</select>
+	<select id="findUserByAttribute" parameterType="Map" resultType="com.tonghang.manage.user.pojo.User">
+		select * from users as u 
+		<if test="label_name !=null and label_name !='' ">,users_labels as ul</if>
+		<where>
+			1 = 1 
+			<if test="label_name !=null and label_name !='' ">
+				and u.client_id = ul.client_id and upper(ul.label_name) = upper(#{label_name})
+			</if>
+			<if test="username != null and username != ''">
+				and upper(u.username) = upper(#{username})	
+			</if>
+			<if test="email != null and email != ''">
+				and email = #{email}
+			</if>
+			<if test="sex != null and sex != ''">
+				and sex =#{sex}
+			</if>
+			<if test="phone != null and phone != ''">
+				and phone = #{phone}
+			</if>
+			
+		</where>
+	</select>
+	<select id="findAllUser" resultType="com.tonghang.manage.user.pojo.User">
+		select * from users
+	</select>
+	<select id="userNumbers" resultType="int">
+		select count(*) from users
+	</select>
+	
+	<select id="userNumbersByAttribute" resultType="int" parameterType="Map">
+		select count(*) from users  as u
+		<if test="label_name !=null and label_name !='' ">,users_labels as ul</if>
+		<where>
+			1 = 1 
+			<if test="label_name !=null and label_name !='' ">
+				and u.client_id = ul.client_id and upper(ul.label_name ) = upper(#{label_name})
+			</if>
+			<if test="username != null and username != ''">
+				and username = #{username}  		
+			</if>
+			<if test="email != null and email != ''">
+				and id_card = #{id_card}
+			</if>
+			<if test="sex != null and sex != ''">
+				and sex =#{sex}
+			</if>
+			<if test="phone != null and phone != ''">
+				and phone = #{phone}
+			</if>
+		</where>
+	</select>
+	<update id="isolate" parameterType="java.lang.String">
+		update users set status = #{status} where client_id = #{client_id}
+	</update>
+</mapper>
