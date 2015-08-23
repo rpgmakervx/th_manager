@@ -136,7 +136,7 @@
                             	运营模块
                         </small>
                     </a>
-                    <a href="#" class="navbar-brand">
+                    <a href="<%=basePath %>statistic/index" class="navbar-brand">
                         <small>
                             	统计模块
                         </small>
@@ -190,7 +190,7 @@
 							</a>
 							<ul class="submenu visible-lg">
 								<li >
-									<a href="#">
+									<a href="<%=basePath %>statistic/index">
 										<center>活跃用户</center>
 									</a>
 								</li>
@@ -383,17 +383,20 @@
 					})
 				})
 			})
+			//火狐上面 Date对象不支持 ’2015-8-10‘这种格式，必须是 ’2015-08-10‘
 			function showdate(n){
 				var uom = new Date();
 				uom.setDate(uom.getDate()+n);
-				uom = uom.getFullYear() + "-" + (uom.getMonth()+1) + "-" + uom.getDate();
+				uom = uom.getFullYear() + "-" + ((uom.getMonth()+1)>10?(uom.getMonth()+1):"0"+(uom.getMonth()+1)) + "-" + uom.getDate();
 				return uom;
 			}
+			//包装自定义的日期为Date对象
 			function self_define_date(date){
 				var uom = new Date(date);
 				uom = uom.getFullYear() + "-" + (uom.getMonth()+1) + "-" + uom.getDate();
 				return uom;
 			}
+			//生成表第一列的日期数据
 			function buildTableFront(begin,end){
 				var result = new Array(); 
 				var loop = parseInt(Math.abs(end - begin)/1000/60/60/24+1);
@@ -403,7 +406,7 @@
 				}
 				return result;
 			}
-			
+			//生成表格信息，不同class属性用来对应不同颜色
 			function createTable(datas,begin,end,level){
 				for(var index=0;index<9;index++){
 					if(datas.remainPercent.length<=index){

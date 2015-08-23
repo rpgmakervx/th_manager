@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tonghang.manage.statistics.dao.ChannelMapper" >
+	
+	<select id="findNewUserFromChannel" resultType="int" parameterType="java.lang.String">
+		select count(*) from users where channel_id = #{0} and DATE_FORMAT(created_at,'%Y-%m-%d') = DATE_FORMAT(#{1},'%Y-%m-%d')
+	</select>
+	<select id="findAllUserFromChannel" resultType="int" parameterType="java.lang.String">
+		select count(*) from users where  channel_id = #{0} and created_at <![CDATA[ <= ]]> #{1}+ INTERVAL 1 DAY 
+	</select>
+	
+</mapper>
