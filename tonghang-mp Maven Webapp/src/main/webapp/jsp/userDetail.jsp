@@ -92,7 +92,7 @@
                             	运营模块
                         </small>
                     </a>
-                    <a href="#" class="navbar-brand">
+                    <a href="<%=basePath%>statistic/index" class="navbar-brand">
                         <small>
                             	统计模块
                         </small>

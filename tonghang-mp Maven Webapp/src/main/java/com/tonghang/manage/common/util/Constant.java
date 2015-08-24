@@ -44,20 +44,28 @@ public class Constant{
 	public static final int WEEK = 7;
 	public static final int MONTH = 30;
 	/** METHOD_DELETE value:GET */
-	public static String METHOD_GET = "GET";
+	public static final String METHOD_GET = "GET";
 
 	/** METHOD_DELETE value:POST */
-	public static String METHOD_POST = "POST";
+	public static final String METHOD_POST = "POST";
 
 	/** METHOD_DELETE value:PUT */
-	public static String METHOD_PUT = "PUT";
+	public static final String METHOD_PUT = "PUT";
 
 	/** METHOD_DELETE value:DELETE */
-	public static String METHOD_DELETE = "DELETE";
+	public static final String METHOD_DELETE = "DELETE";
 	
 	/** error code*/
 	public static int ERROR = 500;
 	public static int SUCCEES = 200;
-	
-
+	/***/
+	public static final String CMD_HEAD = "cmd /c";
+	/**mysql备份指令*/
+	public static final String BACKUP_SHELL = "mysqldump -h localhost -uroot -pxingtianyu tonghang>";
+	/**mysql恢复指令*/
+	public static final String RECOVER_SHELL = "mysql -h localhost -uroot -pxingtianyu tonghang<";
+	/**windows备份路径*/
+	public static final String WIN_BACKUP_PATH = "D:/th_backup/";
+	/**linux备份路径*/
+	public static final String LINUX_BACKUP_PATH = "/root/th_backup/";
 }

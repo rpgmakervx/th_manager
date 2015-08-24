@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
 	String path = request.getContextPath();
 	String basePath = path+"/";
@@ -7,28 +8,27 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8" />
-		<title>同行后台管理系统</title>
-		<meta name="keywords" content="同行" />
-		<meta name="description" content="同行" />
+		<title>控制台 - Bootstrap后台管理系统模版Ace下载</title>
+		<meta name="keywords" content="Bootstrap模版,Bootstrap模版下载,Bootstrap教程,Bootstrap中文" />
+		<meta name="description" content="站长素材提供Bootstrap模版,Bootstrap教程,Bootstrap中文翻译等相关Bootstrap插件下载" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<!-- basic styles -->
 		<link href="<%=basePath%>assets/css/bootstrap.min.css" rel="stylesheet" />
 		<link rel="stylesheet" href="<%=basePath%>assets/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="<%=basePath%>assets/css/daterangepicker.css" />
 		<link rel="stylesheet" href="<%=basePath%>assets/css/datepicker.css" />
 		<link rel="stylesheet" href="<%=basePath%>assets/css/bootstrap-timepicker.css" />
+
 		<!--[if IE 7]>
 		  <link rel="stylesheet" href="<%=basePath%>assets/css/font-awesome-ie7.min.css" />
 		<![endif]-->
 
-		<script src="<%=basePath%>assets/js/jquery-1.9.1.min.js"></script>
-		<script src="<%=basePath%>assets/js/echarts-all.js"></script>
+
 		<!-- ace styles -->
 
 		<link rel="stylesheet" href="<%=basePath%>assets/css/ace.min.css" />
 		<link rel="stylesheet" href="<%=basePath%>assets/css/ace-rtl.min.css" />
 		<link rel="stylesheet" href="<%=basePath%>assets/css/ace-skins.min.css" />
-		<style type="text/css">
+		<style>
 			body,html{
 				margin:0;
 				padding:0;
@@ -36,16 +36,56 @@
 				height:100%;
 				font-family: "微软雅黑","Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;
 			}
+			.border{
+				color:#FFF;
+			}
 			#nav_model a:hover{
 				color:#FB8B1C;
 				cursor:pointer;
 				text-decoration: none; 
 				border-bottom:4px #000 solid;
 			}
-			#chart{
-				height:400px;
-			}
-		</style>
+        	.block-h-1{
+        		height: 10px;
+        		width: 100%
+        	}
+        	.block-h-2{
+        		height: 20px;
+        		width: 100%
+        	}
+        	.block-h-3{
+        		height: 30px;
+        		width: 100%
+        	}
+        	.block-h-4{
+        		height: 40px;
+        		width: 100%
+        	}
+        	.block-h-5{
+        		height: 50px;
+        		width: 100%
+        	}
+        	.block-w-1{
+        		height: 100%;
+        		width: 10px;
+        	}
+        	.block-w-2{
+        		height: 100%;
+        		width: 20px;
+        	}
+        	.block-w-3{
+        		height: 100%;
+        		width: 30px;
+        	}
+        	.block-w-4{
+        		height: 100%;
+        		width: 40px;
+        	}
+        	.block-w-5{
+        		height: 100%;
+        		width: 50px;
+        	}
+        </style>
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="<%=basePath%>assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -53,11 +93,9 @@
 		<!-- inline styles related to this page -->
 
 		<!-- ace settings handler -->
+
 		<script src="<%=basePath%>assets/js/ace-extra.min.js"></script>
-		<!-- core function self definition -->
-		<script type="text/javascript">
-			
-		</script>
+		<script src="<%=basePath%>assets/js/jquery-1.9.1.min.js"></script>
 		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
 		<!--[if lt IE 9]>
@@ -82,12 +120,12 @@
 				</div><!-- /.navbar-header -->
 				<span class="col-xs-2"></span>
 				<div class="navbar-header " id="nav_model" role="navigation">
-                	<a href="<%=basePath %>admin/index" class="navbar-brand">
+                	<a href="<%=basePath%>admin/index" class="navbar-brand">
                         <small>
                             	全局模块
                         </small>
                     </a>
-                    <a href="<%=basePath %>user/index" class="navbar-brand">
+                    <a href="<%=basePath%>user/index" class="navbar-brand">
                         <small>
                            	 用户模块
                         </small>
@@ -97,7 +135,7 @@
                             	运营模块
                         </small>
                     </a>
-                    <a href="#" class="navbar-brand">
+                    <a href="<%=basePath%>statistic/index" class="navbar-brand">
                         <small>
                             	统计模块
                         </small>
@@ -111,6 +149,7 @@
 									<small>当前用户：</small>
 									${login_admin.name}
 								</span>
+
 								<i class="icon-caret-down"></i>
 							</a>
 							<ul class="user-menu pull-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
@@ -121,7 +160,6 @@
 									</a>
 								</li>
 								<li class="divider"></li>
-
 								<li>
 									<a href="<%=basePath%>admin/logout">
 										<i class="icon-off"></i>
@@ -134,91 +172,110 @@
 				</div><!-- /.navbar-header -->
 			</div><!-- /.container -->
 		</div>
+
 		<div class="main-container" id="main-container">
+
 			<div class="main-container-inner " >
 				<a class="menu-toggler" id="menu-toggler" href="#">
 					<span class="menu-text"></span>
 				</a>
+
 				<div class="sidebar" id="sidebar">
 					<script type="text/javascript">
 						try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
 					</script>
 					<ul class="nav nav-list">
-						<li class="" class="dropdown-toggle">
-							<a href="<%=basePath%>admin/setting" class="dropdown-toggle">
-								<center><span class="menu-text">用户分析</span></center>
-								<b class="arrow icon-angle-down"></b>
-							</a>
-							<ul class="submenu visible-lg">
-								<li class="active">
-									<a href="#">
-										<center>活跃用户</center>
-									</a>
-								</li>
-                                <li>
-									<a href="<%=basePath %>statistic/dailynew">
-										<center>新增用户</center>
-									</a>
-								</li>
-								<li>
-									<a href="<%=basePath %>statistic/dailyall">
-										<center>每日总用户</center>
-									</a>
-								</li>
-							</ul>
-						</li>
 						<li>
-							<a href="<%=basePath %>statistic/remain" >
-								<center><span class="menu-text">留存分析</span></center>
+							<a href="<%=basePath%>admin/index" class="dropdown-toggle">
+								<center><span class="menu-text">app控制台</span></center>
 							</a>
 						</li>
-						<li>
-							<a href="#" >
-								<center><span class="menu-text">渠道分析</span></center>
+						<li class="active">
+							<a href="#" class="dropdown-toggle">
+								<center><span class="menu-text">数据备份和还原</span></center>
 							</a>
 						</li>
 					</ul><!-- /.nav-list -->
+					<div class="sidebar-collapse" id="sidebar-collapse">
+						<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+					</div>
 					<script type="text/javascript">
 						try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
 					</script>
 				</div>
-
 				<div class="main-content">
 					<div class="breadcrumbs" id="breadcrumbs">
 						<script type="text/javascript">
 							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
 						</script>
-
 						<ul class="breadcrumb">
 							<li>
 								<i class="icon-home home-icon"></i>
 								<a href="<%=basePath%>admin/index">首页</a>
 							</li>
-							<li class="orange">统计模块</li>
-							<li class="orange">用户分析</li>
-							<li class="orange">活跃用户</li>
+							<li class="orange">全局</li>
+							<li class="orange">数据备份和还原</li>
 						</ul><!-- .breadcrumb -->
 					</div>
 					<div class="page-content">
 						<div class="page-header">
 							<h1>
-								<span class="orange2">活跃用户</span>
+								<span class="orange2">数据备份和还原</span>
 							</h1>
 						</div><!-- /.page-header -->
+						<h4>
+							<span class="blue">数据备份</span>
+						</h4>
 						<div class="row">
-							<div class="col-sm-4 col-sm-offset-8">
-								<label class="col-sm-4 control-label no-padding-right" for="id-date-picker-1">选择时间段：</label>
-								<div class="input-group col-lg-9">
-									<input class="form-control date-range-picker" type="text" name="duration" id="id-date-range-picker-1" />
-									<span class="input-group-addon">
-										<i class="icon-calendar bigger-110"></i>
-									</span>
-								</div>
-							</div>  
-							<div class="col-sm-12"> 
-								<div id="chart"></div>
-							</div>
+							<div class="col-lg-12" >
+	                            <div class="col-lg-6">
+	                            	<div class="col-md-8">
+										<button class="btn btn-info" type="button" id="backup">
+											<i class="icon-ok bigger-100"></i>
+											数据备份
+										</button>
+									</div>
+									<div class="col-md-4">
+										<span id="bak_note"></span>
+									</div>
+	                            </div>
+                       		</div>
 						</div><!-- /.row -->
+						<hr/>
+						<h4>
+							<span class="blue">数据还原</span>
+						</h4>
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="col-lg-6">
+	                                <div class="col-xs-8 col-sm-11">
+										<label for="id-date-picker-1">选择日期</label>
+										<div class="row">
+											<div class="col-xs-8 col-sm-11">
+												<div class="input-group">
+													<input class="form-control date-picker" id="id-date-picker-1" readonly type="text" data-date-format="yyyy-mm-dd" />
+													<span class="input-group-addon">
+														<i class="icon-calendar bigger-110"></i>
+													</span>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="col-lg-12">
+                            			<div class="block-h-2"></div>
+                            		</div>
+									<div class="col-md-10">
+										<button id="recover" class="btn btn-info" type="button" >
+											<i class="icon-ok bigger-100"></i>
+											数据恢复
+										</button>
+									</div>
+									<div class="col-md-4">
+										<span id="rec_note"></span>
+									</div>
+	                            </div>
+							</div>
+						</div>
 					</div><!-- /.page-content -->                    
 				</div><!-- /.main-content -->
         	</div>
@@ -254,16 +311,16 @@
 
 		<script src="<%=basePath%>assets/js/jquery-ui-1.10.3.custom.min.js"></script>
 		<script src="<%=basePath%>assets/js/jquery.ui.touch-punch.min.js"></script>
-		<script src="<%=basePath%>assets/js/chosen.jquery.min.js"></script>
-		<script src="<%=basePath%>assets/js/fuelux/fuelux.spinner.min.js"></script>
+		<script src="<%=basePath%>assets/js/jquery.slimscroll.min.js"></script>
 		<script src="<%=basePath%>assets/js/date-time/bootstrap-datepicker.min.js"></script>
 		<script src="<%=basePath%>assets/js/date-time/bootstrap-timepicker.min.js"></script>
 		<script src="<%=basePath%>assets/js/date-time/moment.min.js"></script>
-		<script src="<%=basePath%>assets/js/date-time/daterangepicker.min.js"></script>
-		<script src="<%=basePath%>assets/js/jquery.inputlimiter.1.3.1.min.js"></script>
-		<script src="<%=basePath%>assets/js/jquery.maskedinput.min.js"></script>
-		<script src="<%=basePath%>assets/js/bootstrap-tag.min.js"></script>
-		<script src="<%=basePath%>assets/js/jquery.validate.min.js"></script>
+		<script src="<%=basePath%>assets/js/jquery.easy-pie-chart.min.js"></script>
+		<script src="<%=basePath%>assets/js/jquery.sparkline.min.js"></script>
+		<script src="<%=basePath%>assets/js/flot/jquery.flot.min.js"></script>
+		<script src="<%=basePath%>assets/js/flot/jquery.flot.pie.min.js"></script>
+		<script src="<%=basePath%>assets/js/flot/jquery.flot.resize.min.js"></script>
+
 		<!-- ace scripts -->
 
 		<script src="<%=basePath%>assets/js/ace-elements.min.js"></script>
@@ -272,144 +329,41 @@
 		<!-- inline scripts related to this page -->
 		<script type="text/javascript">
 			$(function(){
-				var jsonnull = {"":""};
-				$.ajax({
-					type:"POST",
-					url:"<%=basePath%>statistic/activeUser",
-					dataType:"json",     
-					contentType:"application/json",
-					data:JSON.stringify(jsonnull),
-					success:function(data){
-						var numbers = data.result.numbers;
-						var myChart = echarts.init(document.getElementById("chart")); 
-				        var option = {
-							title:{
-					            text: "同行后台用户数据统计",
-								align:'center'
-							},
-				            tooltip: {
-				                show: true
-				            },
-				            xAxis : [
-				                {
-				                    type : 'category',
-				                    data : [showdate(-6),showdate(-5),showdate(-4),showdate(-3),showdate(-2),showdate(-1),showdate(0),],
-									splitLine:{
-										show:false
-									}
-				                }
-				            ],
-				            yAxis : [
-				                {
-				                    type : 'value',
-									axisLabel:{
-										show:true,
-										formatter:function(value){
-											return value+"个"
-										},
-									}
-				                }
-				            ],
-				            series : [
-				                {
-				                    "name":"活跃人数",
-				                    "type":"line",
-				                    "data":numbers,
-				                }
-				            ],
-							legend: {
-				                data:["活跃人数"],
-								orient:'horizontal'
-				            },
-				        };
-				        // 为echarts对象加载数据 
-				        myChart.setOption(option);
-					}
-				});
-				$("#id-date-range-picker-1").daterangepicker({
-					format:"YYYY-MM-DD",
-					maxDate:moment().startOf("day")
+				$(".date-picker").datepicker({  
+    				 endDate:new Date()+1
 				})
-				$(".applyBtn").click(function(){
-					var begin = $("input[name='daterangepicker_start']").val();
-					var end = $("input[name='daterangepicker_end']").val();
-					var duration = begin+" - "+end
-					var json = {duration:duration};
+				$("#backup").click(function(){
+					$("#bak_note").html("");
 					$.ajax({
 						type:"POST",
-						url:"<%=basePath%>statistic/activeUser",
+						url:"<%=basePath%>backup/backupData",
+						dataType:"json",     
+						contentType:"application/json",
+						success:function(data){
+							if(data.result.code==200)
+								$("#bak_note").html("<strong class='green' >"+data.result.message+"</strong>");
+							else $("#bak_note").html("<strong class='red' >"+data.result.message+"</strong>");
+						}
+					})
+				})
+				$("#recover").click(function(){
+					$("#rec_note").html("");
+					var date = $("#id-date-picker-1").val();
+					var json = {date:date};
+					$.ajax({
+						type:"POST",
+						url:"<%=basePath%>backup/recoverData",
 						dataType:"json",     
 						contentType:"application/json",
 						data:JSON.stringify(json),
 						success:function(data){
-							var numbers = data.result.numbers;
-							var myChart = echarts.init(document.getElementById("chart")); 
-					        var option = {
-								title:{
-						            text: "同行后台数据统计",
-									align:'center'
-								},
-					            tooltip: {
-					                show: true
-					            },
-					            xAxis : [
-					                {
-					                    type : 'category',
-					                    data :buildXdate(new Date(begin),new Date(end)),
-										splitLine:{
-											show:false
-										}
-					                }
-					            ],
-					            yAxis : [
-					                {
-					                    type : 'value',
-										axisLabel:{
-											show:true,
-											formatter:function(value){
-												return value+"个"
-											},
-										}
-					                }
-					            ],
-					            series : [
-					                {
-					                    "name":"活跃人数",
-					                    "type":"line",
-					                    "data":numbers,
-					                }
-					            ],
-								legend: {
-					                data:["活跃人数"],
-									orient:'horizontal'
-					            },
-					        };
-					        // 为echarts对象加载数据 
-					        myChart.setOption(option);
+							if(data.result.code==200)
+								$("#rec_note").html("<strong class='green' >"+data.result.message+"</strong>");
+							else $("#rec_note").html("<strong class='red' >"+data.result.message+"</strong>");
 						}
 					})
-				});
+				})
 			})
-	        function showdate(n){
-				var uom = new Date();
-				uom.setDate(uom.getDate()+n);
-				uom = uom.getFullYear() + "-" + (uom.getMonth()+1) + "-" + uom.getDate();
-				return uom;
-			}
-			function self_define_date(date){
-				var uom = new Date(date);
-				uom = uom.getFullYear() + "-" + (uom.getMonth()+1) + "-" + uom.getDate();
-				return uom;
-			}
-			function buildXdate(begin,end){
-				var result = new Array(); 
-				var loop = parseInt(Math.abs(end - begin)/1000/60/60/24+1);
-				for(var index = 0;index<loop;index++){
-					result[index] = self_define_date(begin);
-					begin.setDate(begin.getDate()+1);
-				}
-				return result;
-			}
-	    </script>
+		</script>
 </body>
 </html>

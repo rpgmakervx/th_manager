@@ -190,32 +190,8 @@
 							</a>
 						</li>
 						<li>
-							<a href="#" class="dropdown-toggle">
-								<center><span class="menu-text">数据备份</span></center>
-                                <b class="arrow icon-angle-down"></b>
-							</a>
-                            <ul class="submenu">
-								<li>
-									<a href="">
-										<center>用户查询</center>
-									</a>
-								</li>
-                                <li>
-									<a href="">
-										<center>用户添加</center>
-									</a>
-								</li>
-								<li>
-									<a href="jqgrid.html">
-										<center>用户反馈</center>
-									</a>
-								</li>
-							</ul>
-						</li>
-
-						<li>
-							<a href="#" class="dropdown-toggle">
-								<center><span class="menu-text">数据还原</span></center>
+							<a href="<%=basePath%>backup/index" class="dropdown-toggle">
+								<center><span class="menu-text">数据备份和还原</span></center>
 							</a>
 						</li>
 					</ul><!-- /.nav-list -->
