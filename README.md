@@ -14,6 +14,8 @@ The main framework of this system's server include Spring4,Springmvc and Mybatis
 
 4.count actice users,daily new users,daily total users,remain users and app channel.
 
-5.admin change password,admin check sub admin's message,add sub admin.
+5.admin change password,admin check sub admin's message,add sub admin.Then make some statistical chart
 
 6.add advertiser,add a im Secretary
+
+
