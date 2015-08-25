@@ -7,16 +7,16 @@ Our producet called 'tonghang' , which in Chinese is 同行.means some people wh
 The main framework of this system's server include Spring4,Springmvc and Mybatis,client consists of boostrap3.
 
 ## main function:
-*1.admin login.logout,retrieve password by email
+* 1.admin login.logout,retrieve password by email
 
-*2.set system properties,backup and recover database
+* 2.set system properties,backup and recover database
 
-*3.admin look up users' message and block users,check users' feedback
+* 3.admin look up users' message and block users,check users' feedback
 
-*4.count actice users,daily new users,daily total users,remain users and app channel.
+* 4.count actice users,daily new users,daily total users,remain users and app channel.
 
-*5.admin change password,admin check sub admin's message,add sub admin.Then make some statistical charts
+* 5.admin change password,admin check sub admin's message,add sub admin.Then make some statistical charts
 
-*6.add advertiser,add a im Secretary
+* 6.add advertiser,add a im Secretary
 
 
