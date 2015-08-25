@@ -128,7 +128,7 @@
                            	 用户模块
                         </small>
                     </a>
-                    <a href="#" class="navbar-brand">
+                    <a href="<%=basePath%>business/im" class="navbar-brand">
                         <small>
                             	运营模块
                         </small>
