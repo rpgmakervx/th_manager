@@ -8,4 +8,6 @@ public interface SystemMapper {
 	public SystemConfig select();
 	//更新系统参数
 	public void update(SystemConfig config);
+	
+	public void updateUrl(String url);
 }

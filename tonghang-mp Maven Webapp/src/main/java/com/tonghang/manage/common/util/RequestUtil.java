@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -57,25 +58,25 @@ public class RequestUtil {
 			}
 		}
 	}
-//	public static void UserImageReceiver(HttpServletRequest request,String client_id, String picture){
-//		System.out.println("UserImageReceiver:"+ picture);
-//		if(picture!=null){
-//			String pictureRealPathDir = request.getSession().getServletContext().getRealPath("image");
-//			String fileName =pictureRealPathDir+File.separator+client_id+File.separator+Constant.IMAGE_NAME;
-//			File folder = new File(pictureRealPathDir+File.separator+client_id);
-//			if(!folder.exists())
-//				folder.mkdirs();
-//			try {
-//				FileWriter out = new FileWriter(fileName);
-//				char[] ch = picture.toCharArray();
-//				for(int i=0;i<ch.length;i++){
-//					out.write(ch[i]);
-//				}
-//				out.close();
-//			} catch (IOException e) {
-//				// TODO Auto-generated catch block
-//				e.printStackTrace();
-//			}
-//		}
-//	}
+	/***
+	 * 注意：同一天上传的广告会被覆盖
+	 * @param request
+	 * @param picture
+	 */
+	public static void advertiseImageUpload(HttpServletRequest request,CommonsMultipartFile picture,String url){
+		if(picture!=null){
+			String pictureRealPathDir = request.getSession().getServletContext().getRealPath("resources");
+			String fileName =pictureRealPathDir+File.separator+Constant.ADV_IMAGE+url+".jpg";              
+			try {
+				File f = new File(fileName);
+				File folder = new File(pictureRealPathDir);
+				if(!folder.exists())
+					folder.mkdirs();
+				picture.getFileItem().write(f);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 }

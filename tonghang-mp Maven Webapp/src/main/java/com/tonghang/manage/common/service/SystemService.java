@@ -25,7 +25,7 @@ public class SystemService {
 	 * @param config 系统参数对象
 	 * 方法被调用：com.tonghang.manage.common.controller.SystemController.changeSystemConfig(HttpSession,String,String,String)
 	 */
-	public SystemConfig updateConfig(String can_login,String can_regist,String upgrade){
+	public SystemConfig updateConfig(String can_login,String can_regist,String upgrade,String use_adv,String third_adv,String url){
 		SystemConfig config = new SystemConfig();
 		if("on".equals(can_regist))
 			config.setCan_register_user(1);
@@ -36,7 +36,18 @@ public class SystemService {
 		if("on".equals(upgrade))
 			config.setCan_upgrade_silently(1);
 		else config.setCan_upgrade_silently(0);
+		if("on".equals(third_adv))
+			config.setThird_adv(1);
+		else config.setThird_adv(0);
+		if("on".equals(use_adv))
+			config.setUse_adv(1);
+		else config.setUse_adv(0);
+		config.setSelf_adv_url(url);
 		systemMapper.update(config);
 		return config;
+	}
+	
+	public void updateAdvUrl(String url){
+		systemMapper.updateUrl(url);
 	}
 }

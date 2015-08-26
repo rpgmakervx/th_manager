@@ -6,7 +6,10 @@ public class SystemConfig {
 	private int can_register_user;
 	private int can_login;
 	private int can_upgrade_silently;
-
+	private int third_adv;
+	private int use_adv;
+	private String self_adv_url;
+	
 	public int getId() {
 		return id;
 	}
@@ -44,6 +47,30 @@ public class SystemConfig {
 		return "SystemConfig [id=" + id + ", can_register_user="
 				+ can_register_user + ", can_login=" + can_login
 				+ ", can_upgrade_silently=" + can_upgrade_silently + "]";
+	}
+
+	public int getThird_adv() {
+		return third_adv;
+	}
+
+	public void setThird_adv(int third_adv) {
+		this.third_adv = third_adv;
+	}
+
+	public String getSelf_adv_url() {
+		return self_adv_url;
+	}
+
+	public void setSelf_adv_url(String self_adv_url) {
+		this.self_adv_url = self_adv_url;
+	}
+
+	public int getUse_adv() {
+		return use_adv;
+	}
+
+	public void setUse_adv(int use_adv) {
+		this.use_adv = use_adv;
 	}
 	
 }

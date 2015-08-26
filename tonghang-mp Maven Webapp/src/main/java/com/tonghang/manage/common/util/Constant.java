@@ -23,6 +23,7 @@ public class Constant{
 	public static final String HUANXIN_URL = "http://a1.easemob.com/tonghang/tonghang/";
 	public static final String IMAGE_PATH = "/images/";
 	public static final String IMAGE_NAME = "sign.jpg";
+	public static final String ADV_IMAGE = "advertise_";
 	
 	public static String JPushBasic="ZWI0ZTc5YzRhYjE4MmQ3MjVlYzJmZjE1OmVkMzIxNjdhODY0MWFiMWVlODY1OGIzYQ==";
 	public static final String CLIENT_ID = "YXA6zpmeoHX8EeS5LFOLSMeZrA";

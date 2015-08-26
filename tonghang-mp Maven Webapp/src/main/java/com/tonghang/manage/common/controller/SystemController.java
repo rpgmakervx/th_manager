@@ -1,13 +1,21 @@
 package com.tonghang.manage.common.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.tonghang.manage.ad.service.AdvertiseService;
 import com.tonghang.manage.common.pojo.SystemConfig;
 import com.tonghang.manage.common.service.SystemService;
 /**
@@ -24,6 +32,8 @@ public class SystemController {
 
 	@Resource(name="systemService")
 	private SystemService systemService;
+	@Resource(name="advertiseService")
+	private AdvertiseService advertiseService;
 	/**
 	 * 业务功能：restful风格请求url，转发到index.jsp
 	 * @param session
@@ -34,7 +44,7 @@ public class SystemController {
 	 * notic: 
 	 */
 	@RequestMapping(value="config",method=RequestMethod.GET)
-	public String config(HttpSession session){
+	public String config(HttpSession session,HttpServletRequest request){
 		SystemConfig config = systemService.getConfig();
 		System.out.println("system:"+config);
 		session.setAttribute("sys_cfg", config);
@@ -73,11 +83,23 @@ public class SystemController {
 	 * 
 	 */
 	@RequestMapping(value="config",method=RequestMethod.POST)
-	public String changeSystemConfig(HttpSession session,@RequestParam(required=false) String can_regist
-												,@RequestParam(required=false) String can_login,@RequestParam(required=false) String upgrade){
-		SystemConfig config = systemService.updateConfig(can_login, can_regist, upgrade);
+	public String changeSystemConfig(HttpSession session,@RequestParam(required=false) String can_regist ,@RequestParam(required=false) String can_login,@RequestParam(required=false) String use_adv,
+								@RequestParam(required=false) String upgrade,@RequestParam(required=false) String third_adv,@RequestParam(required=false) String url){
+		SystemConfig config = systemService.updateConfig(can_login, can_regist, upgrade, use_adv,third_adv, url);
 		session.setAttribute("cfg_notification", "<strong class='green'>修改成功！</strong>");
 		session.setAttribute("sys_cfg", config);
 		return "index";
+	}
+	
+	@RequestMapping(value="adv_url",method=RequestMethod.POST)
+	public ResponseEntity<Map<String,Object>> showUrl(HttpServletRequest request){
+		Map<String,Object> result = new HashMap<String, Object>();
+		Map<String,Object> msg = new HashMap<String, Object>();
+		List<String> advertise_urls = advertiseService.getAdvertiseUrl(request);
+		SystemConfig config = systemService.getConfig();
+		msg.put("now_url", config.getSelf_adv_url());
+		msg.put("advertise_urls", advertise_urls);
+		result.put("result", msg);
+		return new ResponseEntity<Map<String,Object>>(result,HttpStatus.OK);
 	}
 }

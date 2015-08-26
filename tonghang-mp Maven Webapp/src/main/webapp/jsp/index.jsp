@@ -128,7 +128,7 @@
                            	 用户模块
                         </small>
                     </a>
-                    <a href="<%=basePath%>business/im" class="navbar-brand">
+                    <a href="<%=basePath%>advertise/index" class="navbar-brand">
                         <small>
                             	运营模块
                         </small>
@@ -257,6 +257,11 @@
                                             <h2><strong>升级管理</strong></h2>
                                             <h5><strong>静默升级(OFF)或者提示升级(ON)</strong></h5>
                                         </div>
+                                        <div class="col-lg-3">
+                                            <h2><strong>第三方广告</strong></h2>
+                                            <h5><strong>关闭(OFF)开启(ON)</strong></h5>
+                                        </div>
+                                        
                             		</div>
                             		<div class="col-lg-12">
                             			<div class="block-h-2"></div>
@@ -283,9 +288,41 @@
                                                 <span class="lbl"></span>
                                             </label>
                                         </div>
+                                        <div class="col-lg-3">
+                                            <label>
+                                                <input name="third_adv" class="ace ace-switch ace-switch-3" type="checkbox"
+                                                	 <c:if test="${sys_cfg.third_adv eq 1}">checked</c:if>/>
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </div> 
+                                    </div>
+                                    <div class="col-lg-12" >
+                                        <div class="col-lg-3">
+                                            <h2><strong>广告开放</strong></h2>
+                                            <h5><strong>是否开启广告</strong></h5>
+                                        </div>
+                                        <div class="col-lg-3">
+                                        	 <h2><strong>本站广告</strong></h2>
+                                        	<h5><strong>选择当前广告地址</strong></h5>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12" >
+                                    	<div class="col-lg-3">
+                                            <label>
+                                                <input name="use_adv" class="ace ace-switch ace-switch-3" type="checkbox"
+                                                	 <c:if test="${sys_cfg.use_adv eq 1}">checked</c:if>/>
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </div>
+                                        <div class="col-md-9">
+	                                        <label class="col-md-6">
+	                                            <select id="url" name="url" readonly class="col-md-9" >
+	                                            </select>
+	                                        </label>
+	                                    </div>
                                     </div>
                                     <div class="col-lg-12">
-                            			<div class="block-h-2"></div>
+                            			<div class="block-h-4"></div>
                             		</div>
                                     <div class="col-lg-12 ">
 	                                    <div class="col-md-10">
@@ -339,7 +376,6 @@
 		<script src="<%=basePath%>assets/js/jquery.ui.touch-punch.min.js"></script>
 		<script src="<%=basePath%>assets/js/jquery.slimscroll.min.js"></script>
 		<script src="<%=basePath%>assets/js/jquery.easy-pie-chart.min.js"></script>
-		<script src="<%=basePath%>assets/js/jquery.sparkline.min.js"></script>
 		<script src="<%=basePath%>assets/js/flot/jquery.flot.min.js"></script>
 		<script src="<%=basePath%>assets/js/flot/jquery.flot.pie.min.js"></script>
 		<script src="<%=basePath%>assets/js/flot/jquery.flot.resize.min.js"></script>
@@ -350,5 +386,26 @@
 		<script src="<%=basePath%>assets/js/ace.min.js"></script>
 
 		<!-- inline scripts related to this page -->
+		<script type="text/javascript">
+			$(function(){
+				$.ajax({
+					type:"POST",
+					url:"<%=basePath%>system/adv_url",
+					dataType:"json",     
+					contentType:"application/json",
+					success:function(data){
+						var urls = data.result.advertise_urls
+						var now_url = data.result.now_url
+						for(var index=0;index<urls.length;index++){
+							if(urls[index]==now_url){
+								$("#url").append("<option selected>"+urls[index]+"</option>")
+							}else{
+								$("#url").append("<option>"+urls[index]+"</option>")
+							}						
+						}
+					}
+				})
+			})
+		</script>
 </body>
 </html>

@@ -8,6 +8,12 @@
 	<update id="update" parameterType="com.tonghang.manage.common.pojo.SystemConfig">
 		update system_config set can_register_user = #{can_register_user},
 		can_login = #{can_login},
-		can_upgrade_silently = #{can_upgrade_silently}
+		can_upgrade_silently = #{can_upgrade_silently},
+		third_adv = #{third_adv},
+		use_adv = #{use_adv},
+		self_adv_url = #{self_adv_url}
+	</update>
+	<update id="updateUrl" parameterType="java.lang.String">
+		update system_config set self_adv_url = #{self_adv_url}
 	</update>
 </mapper>
