@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.tonghang.manage.common.util.Constant;
+import com.tonghang.manage.common.util.JPushUtil;
 import com.tonghang.manage.common.util.StringUtil;
 import com.tonghang.manage.common.util.TimeUtil;
 import com.tonghang.manage.isolate.pojo.IsolateLog;
@@ -121,11 +122,14 @@ public class UserService{
 						user.setStatus("1");
 						userMapper.isolate(user);
 						//加推送
+						JPushUtil.push(user.getClient_id(), user.getClient_id(), user.getUsername(), Constant.DEISOLATE, Constant.DEISOLATE_MSG);
 					}
 				}
 			}, log.getEnd_time());
+			JPushUtil.push(user.getClient_id(), user.getClient_id(), user.getUsername(), Constant.ISOLATE, Constant.ISOLATE_MSG);
 		}else{
 			//加推送
+			JPushUtil.push(user.getClient_id(), user.getClient_id(), user.getUsername(), Constant.DEISOLATE, Constant.DEISOLATE_MSG);
 		}
 		System.out.println("当前用户状态："+user.getStatus());
 		isolateService.saveLog(log);

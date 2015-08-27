@@ -141,7 +141,7 @@
               	</div>
 				<div class="navbar-header pull-right" role="navigation">
 					<ul class="nav ace-nav">
-						<li class="grey">
+						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
 								<span class="user-info">
 									<small>当前用户：</small>
@@ -226,7 +226,7 @@
 							<div class="col-xs-12">
 								<div class="alert alert-block alert-success">
 									<button type="button" class="close" data-dismiss="alert">
-										<i class="icon-remove"></i>
+										<i class="glyphicon glyphicon-remove"></i>
 									</button>
                                    	 尊敬的管理员 
                                    	 <strong class="green">
@@ -240,9 +240,7 @@
 							</div><!-- /.col -->
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-                                <div class="notification">
-                                	<span><big>${cfg_notification}</big></span>
-                                </div>
+                                <span class="orange"><strong><big>权限控制</big></strong></span>
 								<form class="form-horizontal" role="form" method="post" action="<%=basePath%>system/config">
                                 	<div class="col-lg-12" >
                                         <div class="col-lg-3">
@@ -257,10 +255,6 @@
                                             <h2><strong>升级管理</strong></h2>
                                             <h5><strong>静默升级(OFF)或者提示升级(ON)</strong></h5>
                                         </div>
-                                        <div class="col-lg-3">
-                                            <h2><strong>第三方广告</strong></h2>
-                                            <h5><strong>关闭(OFF)开启(ON)</strong></h5>
-                                        </div>
                                         
                             		</div>
                             		<div class="col-lg-12">
@@ -269,15 +263,15 @@
                                     <div class="col-lg-12">
                                         <div class="col-lg-3">
                                             <label>
-                                                <input name="can_regist" class="ace ace-switch ace-switch-2" type="checkbox" 
-                                                		<c:if test="${sys_cfg.can_register_user eq 1}">checked</c:if>/>
+                                                <input name="can_login" class="ace ace-switch ace-switch-2" type="checkbox" 
+                                                	<c:if test="${sys_cfg.can_login eq 1}">checked</c:if> />
                                                 <span class="lbl"></span>
                                             </label>
                                         </div>
                                         <div class="col-lg-3">
                                             <label>
-                                                <input name="can_login" class="ace ace-switch ace-switch-2" type="checkbox" 
-                                                	<c:if test="${sys_cfg.can_login eq 1}">checked</c:if> />
+                                                <input name="can_regist" class="ace ace-switch ace-switch-2" type="checkbox" 
+                                                		<c:if test="${sys_cfg.can_register_user eq 1}">checked</c:if>/>
                                                 <span class="lbl"></span>
                                             </label>
                                         </div>
@@ -288,18 +282,19 @@
                                                 <span class="lbl"></span>
                                             </label>
                                         </div>
-                                        <div class="col-lg-3">
-                                            <label>
-                                                <input name="third_adv" class="ace ace-switch ace-switch-3" type="checkbox"
-                                                	 <c:if test="${sys_cfg.third_adv eq 1}">checked</c:if>/>
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </div> 
                                     </div>
+                                    <div class="col-lg-12">
+                                    	<hr/>
+                                    </div>
+                                    <span class="orange"><strong><big>广告控制</big></strong></span>
                                     <div class="col-lg-12" >
                                         <div class="col-lg-3">
                                             <h2><strong>广告开放</strong></h2>
                                             <h5><strong>是否开启广告</strong></h5>
+                                        </div>
+                                    	<div class="col-lg-3">
+                                            <h2><strong>第三方广告</strong></h2>
+                                            <h5><strong>关闭(OFF)开启(ON)</strong></h5>
                                         </div>
                                         <div class="col-lg-3">
                                         	 <h2><strong>本站广告</strong></h2>
@@ -309,12 +304,19 @@
                                     <div class="col-lg-12" >
                                     	<div class="col-lg-3">
                                             <label>
+                                                <input name="third_adv" class="ace ace-switch ace-switch-3" type="checkbox"
+                                                	 <c:if test="${sys_cfg.third_adv eq 1}">checked</c:if>/>
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </div> 
+                                    	<div class="col-lg-3">
+                                            <label>
                                                 <input name="use_adv" class="ace ace-switch ace-switch-3" type="checkbox"
                                                 	 <c:if test="${sys_cfg.use_adv eq 1}">checked</c:if>/>
                                                 <span class="lbl"></span>
                                             </label>
                                         </div>
-                                        <div class="col-md-9">
+                                        <div class="col-md-6">
 	                                        <label class="col-md-6">
 	                                            <select id="url" name="url" readonly class="col-md-9" >
 	                                            </select>
@@ -335,6 +337,9 @@
 												Reset
 											</button>
 										</div>
+										<div class="notification">
+		                                	<span><big>${cfg_notification}</big></span>
+		                                </div>
 									</div>
                                 </form>
                             </div><!-- /.col-xs-12 -->
@@ -379,7 +384,7 @@
 		<script src="<%=basePath%>assets/js/flot/jquery.flot.min.js"></script>
 		<script src="<%=basePath%>assets/js/flot/jquery.flot.pie.min.js"></script>
 		<script src="<%=basePath%>assets/js/flot/jquery.flot.resize.min.js"></script>
-
+		<script src="<%=basePath%>assets/js/jquery.sparkline.min.js"></script>
 		<!-- ace scripts -->
 
 		<script src="<%=basePath%>assets/js/ace-elements.min.js"></script>

@@ -18,6 +18,13 @@ public class Constant{
 	public static final String EMAIL_EXIST = "该邮箱已被注册";
 	public static final String PHONE_EXIST = "该手机号已被注册";
 	public static final String ADDSUCCESS = "管理员添加成功";
+	public static final String AGREE_ADD_MSG = "同意添加您为好友"; 
+	public static final String REFUSE_ADD_MSG = "拒绝添加您为好友";
+	public static final String INVITATION_MSG = "请求添加您为好友";
+	public static final String NEWBE_MSG = "是和您行业相近的新用户";
+	public static final String ISOLATE_MSG = "您已被管理员封号，详情请咨询客服tonghangtinghang@126.com";
+	public static final String DEISOLATE_MSG = "您已被管理员解封，欢迎您再次使用";
+	
 	
 	public static final String PICTURE_SERVER = "http://114.215.143.83:8080/tonghang-serverapi";
 	public static final String HUANXIN_URL = "http://a1.easemob.com/tonghang/tonghang/";
@@ -69,4 +76,12 @@ public class Constant{
 	public static final String WIN_BACKUP_PATH = "D:/th_backup/";
 	/**linux备份路径*/
 	public static final String LINUX_BACKUP_PATH = "/root/th_backup/";
+	
+	public static final String INVITATION = "0";
+	public static final String AGREE_ADD_FRIEND = "1";
+	public static final String REFUSE_ADD_FRIEND = "2";
+	public static final String RECOMMEND_NEWBE = "3";
+	public static final String ISOLATE = "4";
+	public static final String DEISOLATE = "5";
+	public static final String DELETE_TOPIC = "6";
 }
