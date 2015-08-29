@@ -185,8 +185,15 @@ public class UserController {
 		IsolateLog isolate = new IsolateLog();
 		isolate.setAdmin_id(admin_id);
 		isolate.setReason(reason);
-		String begin = StringUtil.seperateTime(duration, 0);
-		String end = StringUtil.seperateTime(duration, 1);
+		String begin = "";
+		String end = "";
+		if(!duration.equals("")){
+			begin = StringUtil.seperateTime(duration, 0);
+			end = StringUtil.seperateTime(duration, 1);			
+		}else{
+			begin = TimeUtil.getFormatString(new Date());
+			end = TimeUtil.getFormatString(TimeUtil.plusDateForDateTime(7,new Date()));
+		}
 		isolate.setBegin_time(TimeUtil.getFormatDate(begin));
 		isolate.setEnd_time(TimeUtil.getFormatDate(end));
 		isolate.setOperated_time(new Date());

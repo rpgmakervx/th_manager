@@ -43,6 +43,7 @@ public class SystemService {
 			config.setUse_adv(1);
 		else config.setUse_adv(0);
 		config.setSelf_adv_url(url);
+		System.out.println("use_adv 开没开");
 		systemMapper.update(config);
 		return config;
 	}

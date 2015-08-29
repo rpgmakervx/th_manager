@@ -304,18 +304,18 @@
                                     <div class="col-lg-12" >
                                     	<div class="col-lg-3">
                                             <label>
-                                                <input name="third_adv" class="ace ace-switch ace-switch-3" type="checkbox"
-                                                	 <c:if test="${sys_cfg.third_adv eq 1}">checked</c:if>/>
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </div> 
-                                    	<div class="col-lg-3">
-                                            <label>
                                                 <input name="use_adv" class="ace ace-switch ace-switch-3" type="checkbox"
                                                 	 <c:if test="${sys_cfg.use_adv eq 1}">checked</c:if>/>
                                                 <span class="lbl"></span>
                                             </label>
                                         </div>
+                                    	<div class="col-lg-3">
+                                            <label>
+                                                <input name="third_adv" class="ace ace-switch ace-switch-3" type="checkbox"
+                                                	 <c:if test="${sys_cfg.third_adv eq 1}">checked</c:if>/>
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </div> 
                                         <div class="col-md-6">
 	                                        <label class="col-md-6">
 	                                            <select id="url" name="url" readonly class="col-md-9" >

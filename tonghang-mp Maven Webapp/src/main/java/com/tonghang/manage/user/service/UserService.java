@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.github.pagehelper.PageHelper;
 import com.tonghang.manage.common.util.Constant;
+import com.tonghang.manage.common.util.EmailUtil;
 import com.tonghang.manage.common.util.JPushUtil;
 import com.tonghang.manage.common.util.StringUtil;
 import com.tonghang.manage.common.util.TimeUtil;
@@ -105,9 +106,8 @@ public class UserService{
 	 * 方法被调用：com.tonghang.manage.user.controller.UerController.
 	 */
 	public void isolateUser(String status,final IsolateLog log){
-		User user = new User();
+		User user = findUserById(log.getClient_id());
 		user.setStatus(status);
-		user.setClient_id(log.getClient_id());
 		final Timer timer = new Timer();
 		if("0".equals(status)){
 			System.out.println("封号结束时间："+log.getEnd_time());
@@ -122,14 +122,14 @@ public class UserService{
 						user.setStatus("1");
 						userMapper.isolate(user);
 						//加推送
-						JPushUtil.push(user.getClient_id(), user.getClient_id(), user.getUsername(), Constant.DEISOLATE, Constant.DEISOLATE_MSG);
+						EmailUtil.sendEmailToUser(user);
 					}
 				}
 			}, log.getEnd_time());
 			JPushUtil.push(user.getClient_id(), user.getClient_id(), user.getUsername(), Constant.ISOLATE, Constant.ISOLATE_MSG);
 		}else{
 			//加推送
-			JPushUtil.push(user.getClient_id(), user.getClient_id(), user.getUsername(), Constant.DEISOLATE, Constant.DEISOLATE_MSG);
+			EmailUtil.sendEmailToUser(user);
 		}
 		System.out.println("当前用户状态："+user.getStatus());
 		isolateService.saveLog(log);

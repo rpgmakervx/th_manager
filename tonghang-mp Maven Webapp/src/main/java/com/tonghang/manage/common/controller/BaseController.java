@@ -25,7 +25,7 @@ public class BaseController {
 		if(e instanceof BaseException){
 			result.put("message", e.getMessage());
 			result.put("code", ((BaseException)e).getCode());
-			System.err.println("抛出自定义异常！！：\n\t"+((BaseException) e).getCode()+"\n\t"+((BaseException) e).getMessage());;
+			System.err.println("抛出自定义异常！！：\n\t"+((BaseException) e).getCode()+"\n\t"+((BaseException) e).getMessage());
 		}else{
 			result.put("code", 500);
 			result.put("message", "server exception");
