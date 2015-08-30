@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tonghang.manage.statistics.dao.StatisticsMapper" >
+
+	<select id="findActiveRecordByDate" resultType="com.tonghang.manage.statistics.pojo.ActiveUser" parameterType="Map">
+		select * from active_user where date = #{date}
+	</select>
+	<select id="findActiveRecordByDuration" resultType="com.tonghang.manage.statistics.pojo.ActiveUser" parameterType="Map">
+		select * from active_user where date between #{0} and #{1}
+	</select>
+	<select id="findDailyNewUserByDate" resultType="com.tonghang.manage.user.pojo.User" parameterType="java.lang.String">
+		select * from users where DATE_FORMAT(created_at,'%Y-%m-%d') = DATE_FORMAT(#{date},'%Y-%m-%d')
+	</select>
+	
+	<select id="getNumberOfActiveUser" resultType="int" parameterType="java.lang.String">
+		select count(*) from active_user where date = #{date}
+	</select>
+	<select id="getDailyNewUserNumber" resultType="int" parameterType="java.lang.String">
+		select count(*) from users where DATE_FORMAT(created_at,'%Y-%m-%d') = DATE_FORMAT(#{date},'%Y-%m-%d')
+	</select>
+	<select id="getTodayAllUserNumber" resultType="int" parameterType="java.lang.String">
+		select count(*) from users where created_at <![CDATA[ <= ]]> #{date}+ INTERVAL 1 DAY 
+	</select>
+	
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tonghang.manage.common.dao.SystemMapper" >
+
+	<select id="select" resultType="com.tonghang.manage.common.pojo.SystemConfig">
+		select * from system_config
+	</select>
+	<update id="update" parameterType="com.tonghang.manage.common.pojo.SystemConfig">
+		update system_config set can_register_user = #{can_register_user},
+		can_login = #{can_login},
+		can_upgrade_silently = #{can_upgrade_silently},
+		third_adv = #{third_adv},
+		use_adv = #{use_adv},
+		self_adv_url = #{self_adv_url}
+	</update>
+	<update id="updateUrl" parameterType="java.lang.String">
+		update system_config set self_adv_url = #{self_adv_url}
+	</update>
+</mapper>
