@@ -17,6 +17,6 @@ The main framework of this system's server include Spring4,Springmvc and Mybatis
 
 * 5.admin change password,admin check sub admin's message,add sub admin.Then make some statistical charts
 
-* 6.add advertiser,add a im Secretary
+* 6.add advertiser。
 
 
