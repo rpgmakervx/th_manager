@@ -8,6 +8,11 @@
   <name>tonghang</name>
   <url>http://maven.apache.org</url>
   <dependencies>
+  	<dependency>
+	    <groupId>de.javakaffee.msm</groupId>
+	    <artifactId>msm-kryo-serializer</artifactId>
+	    <version>1.6.2</version>
+	</dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
