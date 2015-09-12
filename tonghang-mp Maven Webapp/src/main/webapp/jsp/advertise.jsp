@@ -134,7 +134,7 @@ body,html {
 			</div><!-- /.navbar-header -->
 			<span class="col-xs-2"></span>
 			<div class="navbar-header " id="nav_model" role="navigation">
-               	<a href="#" class="navbar-brand">
+               	<a href="<%=basePath%>admin/index" class="navbar-brand">
                        <small>
                            	全局模块
                        </small>
