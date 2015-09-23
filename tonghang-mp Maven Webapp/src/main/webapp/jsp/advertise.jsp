@@ -107,7 +107,6 @@ body,html {
 			}else{
 				$("#form").submit()
 			}
-			
 		})
 	})
 	
@@ -254,6 +253,7 @@ body,html {
 													<i class="icon-ok bigger-100"></i>
 													Submit
 												</button>
+												<span class="notification">${adv_notification}</span>
 											</div>
 										</div>
 									</form>

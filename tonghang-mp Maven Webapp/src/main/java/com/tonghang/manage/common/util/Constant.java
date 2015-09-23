@@ -71,7 +71,7 @@ public class Constant{
 	/**mysql备份指令*/
 	public static final String BACKUP_SHELL = "mysqldump -h localhost -uroot -pxingtianyu tonghang>";
 	/**mysql恢复指令*/
-	public static final String RECOVER_SHELL = "mysql -h localhost -uroot -pxingtianyu tonghang<";
+	public static final String RECOVER_SHELL = "mysql -h localhost -uroot -p123456 tonghang<";
 	/**windows备份路径*/
 	public static final String WIN_BACKUP_PATH = "D:/th_backup/";
 	/**linux备份路径*/

@@ -21,14 +21,19 @@ public class AdvertiseController {
 	private SystemService systemService;
 	
 	@RequestMapping(value="index",method=RequestMethod.GET)
-	public String index(){
+	public String index(HttpServletRequest request){
+		request.getSession().removeAttribute("adv_notification");
 		return "advertise";
 	}
-
+	@RequestMapping(value="adv",method=RequestMethod.GET)
+	public String adv(HttpServletRequest request){
+		return "advertise";
+	}
 	@RequestMapping(value="adv",method=RequestMethod.POST)
 	public String advUpload(HttpServletRequest request,@RequestParam String url,@RequestParam CommonsMultipartFile file){
 		RequestUtil.advertiseImageUpload(request,file,url);
 		systemService.updateAdvUrl(url);
-		return "redirect:index";
+		request.getSession().setAttribute("adv_notification", "<big>提交完成！</big>");
+		return "advertise";
 	}
 }
