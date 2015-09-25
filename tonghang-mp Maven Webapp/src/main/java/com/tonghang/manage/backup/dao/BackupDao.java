@@ -13,7 +13,7 @@ public class BackupDao {
 
 	public List<String> findAllBakDate(){
 		List<String> dates = new ArrayList<String>();
-		File bakfile = new File(Constant.WIN_BACKUP_PATH);
+		File bakfile = new File(Constant.LINUX_BACKUP_PATH);
 		for(File f:bakfile.listFiles()){
 			String date = f.getName().substring(f.getName().lastIndexOf("_")+1,f.getName().lastIndexOf("."));
 			dates.add(date);

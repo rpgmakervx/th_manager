@@ -253,7 +253,7 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <h2><strong>升级管理</strong></h2>
-                                            <h5><strong>静默升级(OFF)或者提示升级(ON)</strong></h5>
+                                            <h5><strong>提示升级(OFF)或者静默升级(ON)</strong></h5>
                                         </div>
                                         
                             		</div>

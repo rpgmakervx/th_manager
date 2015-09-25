@@ -67,15 +67,16 @@ public class Constant{
 	public static int ERROR = 500;
 	public static int SUCCEES = 200;
 	/***/
-	public static final String CMD_HEAD = "cmd /c";
+	public static final String CMD_HEAD = "cmd /c ";
+	public static final String SHELL_HEAD = "/bin/sh -c ";
 	/**mysql备份指令*/
-	public static final String BACKUP_SHELL = "mysqldump -h localhost -uroot -pxingtianyu tonghang>";
+	public static final String BACKUP_SHELL = "mysqldump -h localhost -uroot -p123456 tonghang>";
 	/**mysql恢复指令*/
 	public static final String RECOVER_SHELL = "mysql -h localhost -uroot -p123456 tonghang<";
 	/**windows备份路径*/
 	public static final String WIN_BACKUP_PATH = "D:/th_backup/";
 	/**linux备份路径*/
-	public static final String LINUX_BACKUP_PATH = "/root/th_backup/";
+	public static final String LINUX_BACKUP_PATH = "'/root/th_backup/'";
 	
 	public static final String INVITATION = "0";
 	public static final String AGREE_ADD_FRIEND = "1";
