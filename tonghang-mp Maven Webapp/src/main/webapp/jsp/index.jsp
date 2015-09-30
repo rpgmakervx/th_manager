@@ -190,6 +190,11 @@
 							</a>
 						</li>
 						<li>
+							<a href="<%=basePath%>app/index" class="dropdown-toggle">
+								<center><span class="menu-text">app版本管理</span></center>
+							</a>
+						</li>
+						<li>
 							<a href="<%=basePath%>backup/index" class="dropdown-toggle">
 								<center><span class="menu-text">数据备份和还原</span></center>
 							</a>

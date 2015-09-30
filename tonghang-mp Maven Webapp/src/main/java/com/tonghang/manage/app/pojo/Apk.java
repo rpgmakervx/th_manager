@@ -8,8 +8,6 @@ public class Apk {
 	
 	public String app_version;
 	
-	public int download_times;
-	
 	public Date upload_at;
 
 	public String getApp_code() {
@@ -26,14 +24,6 @@ public class Apk {
 
 	public void setApp_version(String app_version) {
 		this.app_version = app_version;
-	}
-
-	public int getDownload_times() {
-		return download_times;
-	}
-
-	public void setDownload_times(int download_times) {
-		this.download_times = download_times;
 	}
 
 	public Date getUpload_at() {
