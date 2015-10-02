@@ -77,12 +77,36 @@ public class Constant{
 	public static final String WIN_BACKUP_PATH = "D:/th_backup/";
 	/**linux备份路径*/
 	public static final String LINUX_BACKUP_PATH = "'/root/th_backup/'";
+	/** apk的存放路径*/
+	public static final String APK_HOME = "home/app";
+	/** linux下apk的解压路径*/
+	public static final String LINUX_UNPACK_PATH = " /root/apk_unzip/app";
+	/** windows下apk的解压路径*/
+	public static final String WIN_UNPACK_PATH = " D:/apk_unzip/app";
+	/**windows下的解压命令*/
+	public static final String WIN_UNPACK_SHELL = "D:/apk_unzip/apktool d -f ";
+	/**linux下的解压命令*/
+	public static final String LINUX_UNPACK_SHELL = "/root/apk_unzip/./apktool d -f ";
+	/**apk文件在windows下的全路径*/
+	public static final String WIN_APK_PATH = "D:/codekit/java/Web/TomCat/apache-tomcat-7.0.40/webapps/tonghang-serverapi/home/app/";
+	/**apk文件在linux下的全路径*/
+	public static final String LINUX_APK_PATH = "/root/apache-tomcat-7.0.57/webapps/tonghang/home/app/"; 
+
+	public static final String ANDROID_MANIFAST_PATH = "home/unpack/AndroidManifest.xml";
 	
+	
+	/**好友邀请的推送标记*/
 	public static final String INVITATION = "0";
+	/**同意添加为好友的推送标记*/
 	public static final String AGREE_ADD_FRIEND = "1";
+	/**拒绝添加为好友的推送标记*/
 	public static final String REFUSE_ADD_FRIEND = "2";
+	/**新人推荐的推送标记*/
 	public static final String RECOMMEND_NEWBE = "3";
+	/**封号的推送标记*/
 	public static final String ISOLATE = "4";
+	/**解封的推送标记*/
 	public static final String DEISOLATE = "5";
+	/**删除话题的推送标记*/
 	public static final String DELETE_TOPIC = "6";
 }

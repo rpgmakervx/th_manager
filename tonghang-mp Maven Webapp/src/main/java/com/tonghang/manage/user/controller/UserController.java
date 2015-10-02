@@ -83,7 +83,7 @@ public class UserController {
 	@RequestMapping(value="checkAllUser")
 	@ResponseBody public ResponseEntity<Map<String,Object>> checkAllUser(HttpServletResponse response,@RequestParam Integer pageindex){
 		Map<String,Object> result = new HashMap<String, Object>();
-		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal");
+		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal",200);
 		List<User> users = userService.findAllUser(pageindex);
 		int account = userService.getAllUserNumber();
 		map.put("account", account);
@@ -117,7 +117,7 @@ public class UserController {
 	@RequestMapping(value="checkUser")
 	public ResponseEntity<Map<String,Object>> checkUser(@RequestBody Map request,@RequestParam Integer pageindex){
 		Map<String,Object> result = new HashMap<String, Object>();
-		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal");
+		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal",200);
 		String name = (String)request.get("name");
 		String label_name = (String) request.get("label_name");
 		String email = (String) request.get("email");
@@ -162,7 +162,7 @@ public class UserController {
 	@RequestMapping("detail/{client_id}")
 	public ResponseEntity<Map<String,Object>> detail(@PathVariable String client_id){
 		Map<String,Object> result = new HashMap<String, Object>();
-		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal");
+		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal",200);
 		User user = userService.findUserById(client_id);
 		map.putAll(userConverter.userConverter(user));
 		result.put("result", map);

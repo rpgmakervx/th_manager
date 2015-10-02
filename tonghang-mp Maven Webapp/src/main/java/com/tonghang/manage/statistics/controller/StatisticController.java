@@ -65,7 +65,7 @@ public class StatisticController {
 	@RequestMapping(value="activeUser",method=RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> buildChartByActiveUser(@RequestBody(required=false) Map date){
 		Map<String,Object> result = new HashMap<String, Object>();
-		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal");
+		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal",200);
 		Date begin = null;
 		Date end = null;
 		System.out.println("用户自定义的duration:"+date.get("duration"));
@@ -104,7 +104,7 @@ public class StatisticController {
 	@RequestMapping(value="dailyUser",method=RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> buildChartByDailyNewUser(@RequestBody(required=false) Map date){
 		Map<String,Object> result = new HashMap<String, Object>();
-		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal");
+		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal",200);
 		Date begin = null;
 		Date end = null;
 		System.out.println("用户自定义的duration:"+date.get("duration"));
@@ -144,7 +144,7 @@ public class StatisticController {
 	@RequestMapping(value="allUser",method=RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> buildChartByDailyAllUser(@RequestBody(required=false) Map date){
 		Map<String,Object> result = new HashMap<String, Object>();
-		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal");
+		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal",200);
 		Date begin = null;
 		Date end = null;
 		System.out.println("用户自定义的duration:"+date.get("duration"));
@@ -174,7 +174,7 @@ public class StatisticController {
 	public ResponseEntity<Map<String,Object>> buildTabByRemainPercentage(@RequestBody(required=false) Map date){
 		Map<String,Object> result = new HashMap<String, Object>();
 //		Map<String,Object> date = new HashMap<String, Object>();
-		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal");
+		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal",200);
 		Date begin = null;
 		Date end = null;
 		if(date==null||date.get("duration")==null||"".equals(date.get("duration"))){

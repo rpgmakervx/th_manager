@@ -321,7 +321,6 @@
 										</tbody>
 									</table>
 								</div> 
-                                  
 							</div><!-- table div--> 
                             <div class="table-foot row">
                             	<span class="col-md-3">
@@ -334,11 +333,6 @@
                                 	<div class="page-divider">
                                     	<ul class="pagination" id="page-divider">
                                             <li class="disabled" id="Previous"><a href="javascript:pre_page()" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                       <!-- <li id="p1"class="active"><a href="javascript:page_divider(1)">1 </a></li>
-                                            <li id="p2"><a href="javascript:page_divider(2)">2</a></li>
-                                            <li id="p3"><a href="javascript:page_divider(3)">3</a></li>
-                                            <li id="p4"><a href="javascript:page_divider(4)">4</a></li>
-                                            <li id="p5"><a href="javascript:page_divider(5)">5</a></li>-->
                                             <li id="Next"><a href="javascript:next_page()" aria-label="Next"><span aria-hidden="true">»</span></a></li>   
                                    		</ul>
                                    	</div>

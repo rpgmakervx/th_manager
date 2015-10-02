@@ -79,4 +79,21 @@ public class RequestUtil {
 			}
 		}
 	}
+	
+	public static void apkUpload(HttpServletRequest request,CommonsMultipartFile apk){
+		if(apk!=null){
+			String pictureRealPathDir = request.getSession().getServletContext().getRealPath(Constant.APK_HOME);
+			String fileName =apk.getName();         
+			try {
+				File f = new File(fileName);
+				File folder = new File(pictureRealPathDir);
+				if(!folder.exists())
+					folder.mkdirs();
+				apk.getFileItem().write(f);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 }

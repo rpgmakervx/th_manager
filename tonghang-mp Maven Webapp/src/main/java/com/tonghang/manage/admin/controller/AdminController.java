@@ -198,7 +198,7 @@ public class AdminController extends BaseController{
 		Admin admin_mail = adminService.findAdminByEmail(email);
 		Admin admin_phone = adminService.findAdminByPhone(phone);
 		if(admin_mail==null&&admin_phone==null){
-			Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor(Constant.ADDSUCCESS);
+			Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor(Constant.ADDSUCCESS,200);
 			Admin admin = new Admin();
 			admin.setName(name);
 			admin.setPhone(phone);
@@ -254,7 +254,7 @@ public class AdminController extends BaseController{
 		Admin admin = new Admin();
 		System.out.println("查询的name: "+(String) request.get("name"));
 		admin.setName((String) request.get("name"));
-		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor(Constant.ADDSUCCESS);
+		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor(Constant.ADDSUCCESS,200);
 		List<Admin> admins = adminService.findAdminByAttribute(admin,pageindex);
 		int account = adminService.getAdminNumberByAttribute(admin);
 		map.put("account", account);
@@ -288,7 +288,7 @@ public class AdminController extends BaseController{
 	@RequestMapping(value="checkAllAdmin",method=RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> checkAllAdmin(@RequestParam Integer pageindex){
 		Map<String,Object> result = new HashMap<String, Object>();
-		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal");
+		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal",200);
 		List<Admin> admins = adminService.findAllAdmin(pageindex);
 		int account = adminService.getAdminNumber();
 		map.put("account", account);
@@ -306,7 +306,7 @@ public class AdminController extends BaseController{
 	@RequestMapping(value="deleteAdmin",method=RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> deleteAdmin(@RequestBody Map request){
 		Map<String,Object> result = new HashMap<String, Object>();
-		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor(Constant.ADDSUCCESS);
+		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor(Constant.ADDSUCCESS,200);
 		adminService.deleteAdminById((String)request.get("admin_id"));
 		map.put("admin_id", (String)request.get("admin_id"));
 		result.put("result", map);

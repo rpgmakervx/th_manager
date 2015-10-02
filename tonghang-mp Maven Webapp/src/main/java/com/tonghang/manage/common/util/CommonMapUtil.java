@@ -6,10 +6,10 @@ import java.util.Map;
 
 public class CommonMapUtil {
 
-	public static Map<String,Object> baseMsgToMapConvertor(String message){
+	public static Map<String,Object> baseMsgToMapConvertor(String message,int code){
 		Map<String,Object> result = new HashMap<String, Object>();
 		result.put("pic_server", Constant.PICTURE_SERVER);
-		result.put("code", 200);
+		result.put("code", code);
 		result.put("message", message);
 		return result;
 	}

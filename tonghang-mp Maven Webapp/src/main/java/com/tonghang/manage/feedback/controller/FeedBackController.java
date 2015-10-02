@@ -44,7 +44,7 @@ public class FeedBackController {
 	@RequestMapping(value="check",method=RequestMethod.POST)
 	@ResponseBody public ResponseEntity<Map<String,Object>> check(@RequestParam int pageindex){
 		List<FeedBack> feedBacks = feedBackService.findFeedBack(pageindex);
-		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal");
+		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal",200);
 		Map<String,Object> result = new HashMap<String, Object>();
 		map.putAll(fbConverter.feedBacksConverter(feedBacks));
 		map.put("account", feedBackService.getCount());
@@ -56,7 +56,7 @@ public class FeedBackController {
 	@ResponseBody public ResponseEntity<Map<String,Object>> checkFeedBack(@RequestBody Map request,@RequestParam int pageindex){
 		String name = (String) request.get("name");
 		List<FeedBack> feedBacks = feedBackService.findFeedBackByUser(name, pageindex);
-		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal");
+		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal",200);
 		Map<String,Object> result = new HashMap<String, Object>();
 		map.putAll(fbConverter.feedBacksConverter(feedBacks));
 		map.put("account", feedBackService.getCountByUser(name));

@@ -187,7 +187,39 @@ body,html {
 					</div>
 					<!-- /.page-header -->
 					<div class="row"> 
-						
+						<div class="col-xs-12">
+							<h3 class="header smaller lighter blue"><b>全部用户信息概况</b></h3>
+							<div class="table-responsive">
+								<table id="sample-table-2" class="table table-striped table-bordered table-hover">
+									<thead>
+										<tr>
+											<th>上传日期</th>
+											<th>app概况</th>
+											<th>版本文案</th>
+											<th></th>
+										</tr>
+									</thead>
+									<tbody id="datas">													
+									</tbody>
+								</table>
+							</div> 
+							<div class="table-foot row">
+                            	<span class="col-md-3">
+                                	<div class="space-10"></div>
+                                	<div class="numbers">
+                                    	&nbsp;&nbsp;&nbsp;<b>上传次数：<span id="account"></span></b>
+                                    </div>
+                                </span>
+                                <span class="col-md-3 col-sm-offset-6">
+                                	<div class="page-divider">
+                                    	<ul class="pagination" id="page-divider">
+                                            <li class="disabled" id="Previous"><a href="javascript:pre_page()" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
+                                            <li id="Next"><a href="javascript:next_page()" aria-label="Next"><span aria-hidden="true">»</span></a></li>   
+                                   		</ul>
+                                   	</div>
+                                </span>
+                            </div>
+						</div><!-- table div--> 
 			        </div><!-- /.row -->
 				</div>
 				<!-- /.page-content -->
@@ -239,38 +271,6 @@ body,html {
 
 	<!-- inline scripts related to this page -->
 	<script type="text/javascript">
-		$('#id-input-file-3').ace_file_input({
-				style:'well',
-				btn_choose:'sss',
-				btn_change:null,
-				no_icon:'icon-cloud-upload',
-				droppable:true,
-				thumbnail:'small'//large | fit
-				//,icon_remove:null//set null, to hide remove/reset button
-				/**,before_change:function(files, dropped) {
-					//Check an example below
-					//or examples/file-upload.html
-					return true;
-				}*/
-				/**,before_remove : function() {
-					return true;
-				}*/
-				,
-				preview_error : function(filename, error_code) {
-					//name of the file that failed
-					//error_code values
-					//1 = 'FILE_LOAD_FAILED',
-					//2 = 'IMAGE_LOAD_FAILED',
-					//3 = 'THUMBNAIL_FAILED'
-					//alert(error_code);
-				}
-		
-			}).on('change', function(){
-				//console.log($(this).data('ace_input_files'));
-				//console.log($(this).data('ace_input_method'));
-			});
-			
-			
 	</script>
 </body>
 </html>
