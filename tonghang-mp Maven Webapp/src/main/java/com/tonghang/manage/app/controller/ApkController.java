@@ -33,11 +33,13 @@ public class ApkController {
 	public ResponseEntity<Map<String,Object>> uploadApk(HttpServletRequest request,@RequestParam CommonsMultipartFile apk){
 		Map<String,Object> result = new HashMap<String, Object>();
 		RequestUtil.apkUpload(request, apk);
-		result.put("result", apkService.apkUnCompression(request, apk.getName()));
+		result.put("result", apkService.apkUnPack(request, apk.getName()));
 		return new ResponseEntity<Map<String,Object>>(result,HttpStatus.OK);
 	}
 	@RequestMapping(value = "record",method = RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> findAllRecord(){
-		return null;
+		Map<String,Object> result = new HashMap<String, Object>();
+		result.put("result", apkService.findAllApk());
+		return new ResponseEntity<Map<String,Object>>(result,HttpStatus.OK);
 	}
 }

@@ -37,7 +37,7 @@ public class ApkService {
 	 * @param apkname
 	 * @return
 	 */
-	public Map<String,Object> apkUnCompression(HttpServletRequest request,String apkname){
+	public Map<String,Object> apkUnPack(HttpServletRequest request,String apkname){
 		Map<String,Object> result = null;
 		try {
 			Runtime.getRuntime().exec(Constant.SHELL_HEAD+Constant.WIN_UNPACK_SHELL+Constant.WIN_APK_PATH+apkname+Constant.WIN_UNPACK_PATH);
@@ -45,6 +45,7 @@ public class ApkService {
 			if(apk!=null){
 				result = CommonMapUtil.baseMsgToMapConvertor("app上传成功",200);
 				result.putAll(apkConverter.apkConverter(apk));
+				addApk(apk);
 			}else{
 				result = CommonMapUtil.baseMsgToMapConvertor("app上传失败",500);
 			}
@@ -52,6 +53,12 @@ public class ApkService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return result;
+	}
+	
+	public Map<String,Object> findAllApk(){
+		Map<String,Object> result = CommonMapUtil.baseMsgToMapConvertor("server normal", 200);
+		result.putAll(apkConverter.apksConverter(apkMapper.findAllApk()));
 		return result;
 	}
 }
