@@ -58,8 +58,9 @@ body,html {
 
 <!-- self code-->
 <script type="text/javascript">
-
-	
+	$(function(){
+		
+	})
 </script>
 <!--[if lt IE 9]>
 		<script src="<%=basePath%>assets/js/html5shiv.js"></script>
@@ -188,7 +189,7 @@ body,html {
 					<!-- /.page-header -->
 					<div class="row"> 
 						<div class="col-xs-12">
-							<h3 class="header smaller lighter blue"><b>全部用户信息概况</b></h3>
+							<h3 class="header smaller lighter blue"><b>当前版本</b></h3>
 							<div class="table-responsive">
 								<table id="sample-table-2" class="table table-striped table-bordered table-hover">
 									<thead>

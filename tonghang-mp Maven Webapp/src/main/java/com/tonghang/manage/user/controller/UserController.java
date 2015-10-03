@@ -81,7 +81,7 @@ public class UserController {
 	 *			}
 	 */
 	@RequestMapping(value="checkAllUser")
-	@ResponseBody public ResponseEntity<Map<String,Object>> checkAllUser(HttpServletResponse response,@RequestParam Integer pageindex){
+	@ResponseBody public ResponseEntity<Map<String,Object>> checkAllUser(@RequestParam Integer pageindex){
 		Map<String,Object> result = new HashMap<String, Object>();
 		Map<String,Object> map = CommonMapUtil.baseMsgToMapConvertor("server normal",200);
 		List<User> users = userService.findAllUser(pageindex);

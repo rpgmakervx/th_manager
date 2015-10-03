@@ -51,4 +51,11 @@ public class SystemService {
 	public void updateAdvUrl(String url){
 		systemMapper.updateUrl(url);
 	}
+	/**
+	 * 业务功能：直接通过新的系统参数对象修改系统参数
+	 * @param config
+	 */
+	public void updateConfig(SystemConfig config){
+		systemMapper.update(config);
+	}
 }

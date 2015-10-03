@@ -19,7 +19,7 @@ public class AppConfigReader {
 
 	private SAXReader reader ;
 	
-	public Apk getApkMessage(HttpServletRequest request){
+	public Apk getApkMessage(HttpServletRequest request,String context){
 		reader = new SAXReader();
 		Apk apk = null;
 		try {
@@ -34,6 +34,7 @@ public class AppConfigReader {
 			apk.setApp_code(code);
 			apk.setApp_version(version);
 			apk.setUpload_at(new Date());
+			apk.setContext(context);
 		} catch (DocumentException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

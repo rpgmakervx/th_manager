@@ -12,5 +12,7 @@ public interface ApkMapper {
 	//获取所有apk上传记录及其信息
 	public List<Apk> findAllApk();
 	
+	//获取当前apk,连接查询system_config表
+	public Apk findCurrentApk();
 	
 }
