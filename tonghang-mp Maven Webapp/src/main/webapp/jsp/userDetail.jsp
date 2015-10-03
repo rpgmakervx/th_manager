@@ -385,7 +385,6 @@
 		      	</div><!-- /.modal-content -->
 			</div>
 	    </div><!-- /.modal -->
-	    <form action="" method=""></form>
 		<!--[if IE]>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <![endif]-->

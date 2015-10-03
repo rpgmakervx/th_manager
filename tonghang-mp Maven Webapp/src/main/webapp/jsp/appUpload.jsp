@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>控制台 - Bootstrap后台管理系统模版Ace下载</title>
+<title>同行后台管理平台—app更新</title>
 <meta name="keywords" content="同行" />
 <meta name="description" content="同行" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -78,7 +78,7 @@ body,html {
 		$("#datas").children(":last").append("<td>"+app_code+"</td>");
 		$("#datas").children(":last").append("<td>"+app_version+"</td>");
 		$("#datas").children(":last").append("<td>"+context+"</td>");
-		$("#datas").children(":last").append("<td><a href=''>更新</a> | <a href='#'>启动</a></td>");
+		$("#datas").children(":last").append("<td><a href='#uploadModal' data-toggle='modal'>更新</a> | <a href='#'>启动</a></td>");
 	}
 </script>
 <!--[if lt IE 9]>
@@ -216,7 +216,7 @@ body,html {
 											<th>上传日期</th>
 											<th>code</th>
 											<th>version</th>
-											<th>版本文案</th>
+											<th>版本更新日志</th>
 											<th></th>
 										</tr>
 									</thead>
@@ -230,6 +230,46 @@ body,html {
 				<!-- /.page-content -->
 			</div>
 			<!-- /.main-content -->
+			<div class="modal fade" id="uploadModal" tabindex="1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+		        	<div class="modal-header">
+		            	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+		                  &times;
+		            	</button>
+			            <h3 class="modal-title" id="myModalLabel">
+			               	<span class='smaller' >app更新</span>
+			            </h3>
+		         	</div>
+		         	<div class="space-10"></div>
+	         		<div align="center">
+		         		<form id="form" action="<%=basePath%>app/upload" method="post">
+							<div class="row">
+								<div class="form-group name">
+									<label class="col-sm-3 control-label no-padding-right" for="id-date-picker-1">封号时间段：</label>
+									<div class="input-group col-lg-8">
+										
+									</div>
+								</div>
+								<div class="col-sm-12"></div>
+								<div class="form-group name">
+									<label class="col-sm-3 control-label no-padding-right" for="reason">更新日志：</label>
+									<div class="input-group col-lg-8 reason">
+										<textarea required class="form-control" name="reason" id="reason" rows="3"></textarea>
+									</div>
+								</div>
+							</div>
+							<div class="modal-footer ">
+								<button class="btn btn-info"  type="submit">
+									<i class="icon-ok bigger-120"></i>
+									Submit
+								</button>
+							</div>		
+						</form>
+					</div>
+		      	</div><!-- /.modal-content -->
+			</div>
+	    </div><!-- /.modal -->
 		</div>
 	</div>
 	<!-- /.main-container <span class="label label-warning arrowed arrowed-right">售完</span>-->
