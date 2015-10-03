@@ -29,7 +29,7 @@ public class ApkController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="upload",method=RequestMethod.POST)
+	@RequestMapping(value="index",method=RequestMethod.GET)
 	public String index(HttpServletRequest request){
 		request.getSession().removeAttribute("apk_upload_msg");
 		return "appUpload";
@@ -39,7 +39,7 @@ public class ApkController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="uploadApk",method=RequestMethod.POST)
+	@RequestMapping(value="upload",method=RequestMethod.GET)
 	public String uploadApk(HttpServletRequest request){
 		request.getSession().removeAttribute("apk_upload_msg");
 		return "appUpload";
@@ -55,7 +55,7 @@ public class ApkController {
 	 * notice:上传apk后在自定义的一个文件夹下解压包，读取apk信息，
 	 * 			然后删除解压后的所有文件，修改系统及参数表（system_config）
 	 */
-	@RequestMapping(value="uploadApk",method=RequestMethod.POST)
+	@RequestMapping(value="upload",method=RequestMethod.POST)
 	public String uploadApk(HttpServletRequest request,@RequestParam CommonsMultipartFile apk,@RequestParam String context){
 		RequestUtil.apkUpload(request, apk);
 		if(apkService.apkUnPack(request, apk.getName(),context)){

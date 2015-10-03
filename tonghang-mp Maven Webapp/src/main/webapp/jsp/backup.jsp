@@ -190,6 +190,11 @@
 								<center><span class="menu-text">app控制台</span></center>
 							</a>
 						</li>
+						<li>
+							<a href="<%=basePath%>app/index" class="dropdown-toggle">
+								<center><span class="menu-text">app版本管理</span></center>
+							</a>
+						</li>
 						<li class="active">
 							<a href="#" class="dropdown-toggle">
 								<center><span class="menu-text">数据备份和还原</span></center>

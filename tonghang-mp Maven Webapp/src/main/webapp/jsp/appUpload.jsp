@@ -59,8 +59,27 @@ body,html {
 <!-- self code-->
 <script type="text/javascript">
 	$(function(){
-		
+		$.ajax({
+			type:"POST",
+			url:"<%=basePath%>app/current",
+			dataType:"json",     
+			contentType:"application/json",
+			success:function(data){
+				$("#datas").children().remove();
+				var apk = data.result.apk;
+				createTable(apk.app_code,apk.app_version,apk.context,apk.upload_at);
+			}
+		})
 	})
+	
+	function createTable(app_code,app_version,context,upload_at){
+		$("#datas").append("<tr class='"+app_code+app_version+"'></tr>");
+		$("#datas").children(":last").append("<td>"+upload_at+"</td>");
+		$("#datas").children(":last").append("<td>"+app_code+"</td>");
+		$("#datas").children(":last").append("<td>"+app_version+"</td>");
+		$("#datas").children(":last").append("<td>"+context+"</td>");
+		$("#datas").children(":last").append("<td><a href=''>更新</a> | <a href='#'>启动</a></td>");
+	}
 </script>
 <!--[if lt IE 9]>
 		<script src="<%=basePath%>assets/js/html5shiv.js"></script>
@@ -195,7 +214,8 @@ body,html {
 									<thead>
 										<tr>
 											<th>上传日期</th>
-											<th>app概况</th>
+											<th>code</th>
+											<th>version</th>
 											<th>版本文案</th>
 											<th></th>
 										</tr>
@@ -204,22 +224,6 @@ body,html {
 									</tbody>
 								</table>
 							</div> 
-							<div class="table-foot row">
-                            	<span class="col-md-3">
-                                	<div class="space-10"></div>
-                                	<div class="numbers">
-                                    	&nbsp;&nbsp;&nbsp;<b>上传次数：<span id="account"></span></b>
-                                    </div>
-                                </span>
-                                <span class="col-md-3 col-sm-offset-6">
-                                	<div class="page-divider">
-                                    	<ul class="pagination" id="page-divider">
-                                            <li class="disabled" id="Previous"><a href="javascript:pre_page()" aria-label="Previous"><span aria-hidden="true">«</span></a></li>
-                                            <li id="Next"><a href="javascript:next_page()" aria-label="Next"><span aria-hidden="true">»</span></a></li>   
-                                   		</ul>
-                                   	</div>
-                                </span>
-                            </div>
 						</div><!-- table div--> 
 			        </div><!-- /.row -->
 				</div>
