@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
+import com.tonghang.manage.app.pojo.Apk;
 import com.tonghang.manage.app.service.ApkService;
+import com.tonghang.manage.common.controller.BaseController;
+import com.tonghang.manage.common.util.CommonMapUtil;
 import com.tonghang.manage.common.util.RequestUtil;
 
 @Controller("apkController")
 @RequestMapping("app")
-public class ApkController {
+public class ApkController extends BaseController{
 
 	@Resource(name="apkService")
 	private ApkService apkService;
@@ -57,13 +60,32 @@ public class ApkController {
 	 */
 	@RequestMapping(value="upload",method=RequestMethod.POST)
 	public String uploadApk(HttpServletRequest request,@RequestParam CommonsMultipartFile apk,@RequestParam String context){
-		RequestUtil.apkUpload(request, apk);
-		if(apkService.apkUnPack(request, apk.getName(),context)){
-			request.getSession().setAttribute("apk_upload_msg", "apk上传成功");
+		System.out.println("apk 文案："+context);
+		Apk a = apkService.getApkFromConfig(request, context);
+		if(a!=null){
+			request.setAttribute("apk_upload_msg", "<strong class='green'>apk更新成功！</strong>");
 		}else{
-			request.getSession().setAttribute("apk_upload_msg", "apk上传中出现错误");
+			request.setAttribute("apk_upload_msg", "<strong class='red'>apk更新失败！请重新上传</strong>");
 		}
 		return "appUpload";
+	}
+	/**
+	 * 业务功能：执行shell解压一下apk,为了真正保存apk时读取其中的配置文件
+	 * @param request
+	 * @param apk
+	 * @return
+	 * notice:前台发送ajax请求
+	 */
+	@RequestMapping(value="unpack",method=RequestMethod.POST)
+	public ResponseEntity<Map<String,Object>> uploadApk(HttpServletRequest request,@RequestParam CommonsMultipartFile apk){
+		Map<String,Object> result = new HashMap<String, Object>();
+		RequestUtil.apkUpload(request, apk);		
+		if(apkService.apkUnPack(request, apk.getOriginalFilename())){
+			result.put("result", CommonMapUtil.baseMsgToMapConvertor("apk上传成功", 200));
+		}else{
+			result.put("result", CommonMapUtil.baseMsgToMapConvertor("apk上传中出现错误", 500));
+		}
+		return new ResponseEntity<Map<String,Object>>(result,HttpStatus.OK);
 	}
 	/**
 	 * update:2015-10-02

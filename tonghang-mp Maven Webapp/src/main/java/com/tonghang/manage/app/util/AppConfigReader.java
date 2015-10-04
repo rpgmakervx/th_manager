@@ -2,6 +2,7 @@ package com.tonghang.manage.app.util;
 
 import java.io.File;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -21,13 +22,17 @@ public class AppConfigReader {
 	
 	public Apk getApkMessage(HttpServletRequest request,String context){
 		reader = new SAXReader();
+		File f = new File(request.getSession().getServletContext().getRealPath(Constant.ANDROID_MANIFAST_PATH));
+		while(true){
+			if(f.exists())
+				break;
+		}
 		Apk apk = null;
 		try {
-			Document   document = reader.read(new File(request.getSession().getServletContext().getRealPath(Constant.ANDROID_MANIFAST_PATH)));
-			Element node = document.getRootElement();
-			Element element = node.element("manifest"); 
-			Attribute code_attr = element.attribute("android:versionCode"); 
-			Attribute version_attr = element.attribute("android:versionName"); 
+			Document   document = reader.read(f);
+			Element root = document.getRootElement();
+			Attribute code_attr = root.attribute("versionCode"); 
+			Attribute version_attr = root.attribute("versionName"); 
 			String code = code_attr.getText();
 			String version = version_attr.getText();
 			apk = new Apk();

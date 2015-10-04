@@ -6,9 +6,9 @@
 		select * from apk order by upload_at
 	</select>
 	<select id="findCurrentApk" resultType="com.tonghang.manage.app.pojo.Apk">
-		select a.app_code,a.app_version,a.context,a.upload_at from apk as a left join system_config as s on a.app_code = s.app_code 
+		select a.app_code,a.app_version,a.context,a.upload_at from apk as a right join system_config as s on a.app_code = s.app_code 
 	</select>
 	<insert id="save" parameterType="com.tonghang.manage.app.pojo.Apk">
-		insert into apk (app_code,app_version,upload_at) values(#{app_code},#{app_version},#{upload_at})
+		insert into apk (app_code,app_version,context,upload_at) values(#{app_code},#{app_version},#{context},#{upload_at})
 	</insert>
 </mapper>

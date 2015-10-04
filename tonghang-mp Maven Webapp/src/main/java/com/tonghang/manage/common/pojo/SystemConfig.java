@@ -8,6 +8,7 @@ public class SystemConfig {
 	private int can_upgrade_silently;
 	private int third_adv;
 	private int use_adv;
+	private String app_code;
 	private String self_adv_url;
 	
 	public int getId() {
@@ -71,6 +72,14 @@ public class SystemConfig {
 
 	public void setUse_adv(int use_adv) {
 		this.use_adv = use_adv;
+	}
+
+	public String getApp_code() {
+		return app_code;
+	}
+
+	public void setApp_code(String app_code) {
+		this.app_code = app_code;
 	}
 	
 }

@@ -15,6 +15,7 @@
 <!-- basic styles -->
 <link href="<%=basePath%>assets/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css" href="<%=basePath%>assets/css/default.css">
+<link rel="stylesheet" href="<%=basePath%>assets/css/chosen.css" />
 <link href="<%=basePath%>assets/css/fileinput.min.css" rel="stylesheet" type="text/css" />	
 
 <link rel="stylesheet" href="<%=basePath%>assets/css/font-awesome.min.css" />
@@ -46,6 +47,7 @@ body,html {
 	text-decoration: none;
 	border-bottom: 4px #000 solid;
 }
+textarea{resize: none;}
 </style>
 <!--[if lte IE 8]>
 		  <link rel="stylesheet" href="<%=basePath%>assets/css/ace-ie.min.css" />
@@ -59,6 +61,18 @@ body,html {
 <!-- self code-->
 <script type="text/javascript">
 	$(function(){
+		$("#apk").ace_file_input({
+			no_file:'没选择 ...',
+			btn_choose:'Choose',
+			btn_change:'Change',
+			droppable:false,
+			onchange:null,
+			thumbnail:false //| true | large
+			//whitelist:'gif|png|jpg|jpeg'
+			//blacklist:'exe|php'
+			//onchange:''
+			//
+		});
 		$.ajax({
 			type:"POST",
 			url:"<%=basePath%>app/current",
@@ -70,15 +84,43 @@ body,html {
 				createTable(apk.app_code,apk.app_version,apk.context,apk.upload_at);
 			}
 		})
+		$("#form").on("submit",function(){
+			var apkname = $("#apk").val();
+			var context = $("#context").val();
+			if(! (/\.(apk)$/i).test(apkname)){
+				$("#apk_notice").html("<strong class='red'>请选apk文件！</strong>")
+				return false;
+			}
+			return true;
+		})
 	})
-	
+	function uploadApk(){
+		var apkform = $("#apk")[0]
+		var src = window.URL.createObjectURL(apkform.files[0])	
+		var formData = new FormData();
+		formData.append("apk",apkform.files[0])
+		$.ajax({
+			processData : false,
+			contentType : false,  
+			data : formData,
+			type:"POST",
+			url:"<%=basePath%>app/unpack",     
+			success:function(data){
+				if(data.result.code==200){
+					$("#apk_notice").html("<strong class='green'>apk验证通过！</strong>");
+				}else{
+					$("#apk_notice").html("<strong class='red'>上传失败！请检查服务器后重新上传。</strong>")
+				}
+			}
+		})
+	}
 	function createTable(app_code,app_version,context,upload_at){
 		$("#datas").append("<tr class='"+app_code+app_version+"'></tr>");
 		$("#datas").children(":last").append("<td>"+upload_at+"</td>");
 		$("#datas").children(":last").append("<td>"+app_code+"</td>");
 		$("#datas").children(":last").append("<td>"+app_version+"</td>");
 		$("#datas").children(":last").append("<td>"+context+"</td>");
-		$("#datas").children(":last").append("<td><a href='#uploadModal' data-toggle='modal'>更新</a> | <a href='#'>启动</a></td>");
+		$("#datas").children(":last").append("<td class='href_link'><a href='#uploadModal' data-toggle='modal'>更新</a> | <a href='#'>启动</a>  "+"${apk_upload_msg}"+"</td>");
 	}
 </script>
 <!--[if lt IE 9]>
@@ -243,20 +285,29 @@ body,html {
 		         	</div>
 		         	<div class="space-10"></div>
 	         		<div align="center">
-		         		<form id="form" action="<%=basePath%>app/upload" method="post">
+		         		<form id="form" enctype ="multipart/form-data" action="<%=basePath%>app/upload" method="post">
 							<div class="row">
 								<div class="form-group name">
-									<label class="col-sm-3 control-label no-padding-right" for="id-date-picker-1">封号时间段：</label>
+									<label class="col-sm-3 control-label no-padding-right" for="id-date-picker-1">上传apk：</label>
 									<div class="input-group col-lg-8">
-										
+										<input type="file" id="apk" name="apk" required onchange="uploadApk()"/>
 									</div>
 								</div>
-								<div class="col-sm-12"></div>
+								<div class="col-sm-12">
+									<span id="apk_notice"></span>
+								</div>
+								<div class="col-sm-12">
+									<span><small>apk命名建议采用英文字母，配置文件编码采用UTF-8</small></span>
+								</div>
+								<div class="space-10"></div>
 								<div class="form-group name">
 									<label class="col-sm-3 control-label no-padding-right" for="reason">更新日志：</label>
 									<div class="input-group col-lg-8 reason">
-										<textarea required class="form-control" name="reason" id="reason" rows="3"></textarea>
+										<textarea required class="form-control" name="context" id="cotext" rows="5"></textarea>
 									</div>
+								</div>
+								<div class="col-sm-12">
+									<span id="context_notice"></span>
 								</div>
 							</div>
 							<div class="modal-footer ">

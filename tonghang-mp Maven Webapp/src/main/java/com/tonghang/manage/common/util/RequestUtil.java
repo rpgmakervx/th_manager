@@ -83,7 +83,8 @@ public class RequestUtil {
 	public static void apkUpload(HttpServletRequest request,CommonsMultipartFile apk){
 		if(apk!=null){
 			String pictureRealPathDir = request.getSession().getServletContext().getRealPath(Constant.APK_HOME);
-			String fileName =apk.getName();         
+			System.out.println("apk_path : "+pictureRealPathDir);
+			String fileName =pictureRealPathDir+File.separator+apk.getOriginalFilename();         
 			try {
 				File f = new File(fileName);
 				File folder = new File(pictureRealPathDir);

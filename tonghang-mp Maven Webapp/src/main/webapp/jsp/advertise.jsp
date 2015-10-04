@@ -58,12 +58,11 @@ body,html {
 
 <!-- self code-->
 <script type="text/javascript">
-
 	$(function(){
 		var before_change
 		var btn_choose
 		var no_icon
-		btn_choose = "支持拖拽哦亲~~";
+		btn_choose = "请选择图片文件";
 		no_icon = "icon-picture";
 		before_change = function(files, dropped) {
 			var allowed_files = [];

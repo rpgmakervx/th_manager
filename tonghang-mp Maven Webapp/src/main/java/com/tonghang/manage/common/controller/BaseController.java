@@ -29,8 +29,8 @@ public class BaseController {
 		}else{
 			result.put("code", 500);
 			result.put("message", "server exception");
-			e.printStackTrace();
 		}
+		e.printStackTrace();
 		map.put("result", result);
 		return new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
 	}
