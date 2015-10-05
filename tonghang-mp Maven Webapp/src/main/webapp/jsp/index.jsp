@@ -301,10 +301,6 @@
                                             <h2><strong>第三方广告</strong></h2>
                                             <h5><strong>关闭(OFF)开启(ON)</strong></h5>
                                         </div>
-                                        <div class="col-lg-3">
-                                        	 <h2><strong>本站广告</strong></h2>
-                                        	<h5><strong>选择当前广告地址</strong></h5>
-                                        </div>
                                     </div>
                                     <div class="col-lg-12" >
                                     	<div class="col-lg-3">
@@ -321,12 +317,6 @@
                                                 <span class="lbl"></span>
                                             </label>
                                         </div> 
-                                        <div class="col-md-6">
-	                                        <label class="col-md-6">
-	                                            <select id="url" name="url" readonly class="col-md-9" >
-	                                            </select>
-	                                        </label>
-	                                    </div>
                                     </div>
                                     <div class="col-lg-12">
                             			<div class="block-h-4"></div>

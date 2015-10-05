@@ -84,8 +84,8 @@ public class SystemController {
 	 */
 	@RequestMapping(value="config",method=RequestMethod.POST)
 	public String changeSystemConfig(HttpSession session,@RequestParam(required=false) String can_regist ,@RequestParam(required=false) String can_login,@RequestParam(required=false) String use_adv,
-								@RequestParam(required=false) String upgrade,@RequestParam(required=false) String third_adv,@RequestParam(required=false) String url){
-		SystemConfig config = systemService.updateConfig(can_login, can_regist, upgrade, use_adv,third_adv, url);
+								@RequestParam(required=false) String upgrade,@RequestParam(required=false) String third_adv){
+		SystemConfig config = systemService.updateConfig(can_login, can_regist, upgrade, use_adv,third_adv);
 		session.setAttribute("cfg_notification", "<strong class='green'>修改成功！</strong>");
 		session.setAttribute("sys_cfg", config);
 		return "index";

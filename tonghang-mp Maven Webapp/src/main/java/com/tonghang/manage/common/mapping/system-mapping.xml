@@ -11,7 +11,6 @@
 		can_upgrade_silently = #{can_upgrade_silently},
 		third_adv = #{third_adv},
 		use_adv = #{use_adv},
-		self_adv_url = #{self_adv_url},
 		app_code = #{app_code}
 	</update>
 	<update id="updateUrl" parameterType="java.lang.String">
