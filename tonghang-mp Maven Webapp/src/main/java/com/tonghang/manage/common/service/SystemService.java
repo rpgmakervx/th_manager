@@ -26,7 +26,7 @@ public class SystemService {
 	 * 方法被调用：com.tonghang.manage.common.controller.SystemController.changeSystemConfig(HttpSession,String,String,String)
 	 */
 	public SystemConfig updateConfig(String can_login,String can_regist,String upgrade,String use_adv,String third_adv){
-		SystemConfig config = new SystemConfig();
+		SystemConfig config = getConfig();
 		if("on".equals(can_regist))
 			config.setCan_register_user(1);
 		else  config.setCan_register_user(0);

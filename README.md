@@ -19,4 +19,6 @@ The main framework of this system's server include Spring4,Springmvc and Mybatis
 
 * 6.add advertiser。
 
+* 7.upload apk and read it's properties message(include version,code and etc...).
+
 
