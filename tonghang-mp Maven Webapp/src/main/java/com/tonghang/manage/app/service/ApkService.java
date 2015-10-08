@@ -49,7 +49,7 @@ public class ApkService {
 	public boolean apkUnPack(HttpServletRequest request,String apkname){
 		boolean result = false;
 		try {
-			Runtime.getRuntime().exec(Constant.LINUX_UNPACK_SHELL+Constant.LINUX_APK_PATH_TEST+apkname+" "+ request.getSession().getServletContext().getRealPath(Constant.APK_UNPACK_PATH));
+			Runtime.getRuntime().exec(Constant.LINUX_UNPACK_SHELL+Constant.LINUX_APK_PATH+apkname+" "+ request.getSession().getServletContext().getRealPath(Constant.APK_UNPACK_PATH));
 			System.out.println("apk tool running: \n "+Constant.LINUX_UNPACK_SHELL+Constant.LINUX_APK_PATH_TEST+apkname+" "+ request.getSession().getServletContext().getRealPath(Constant.APK_UNPACK_PATH));
 			result = true;
 		} catch (IOException e) {
@@ -72,11 +72,13 @@ public class ApkService {
 			boolean flag = true;
 			List<Apk> apks = apkMapper.findAllApk();
 			for(Apk a:apks){
-				if(a.getApp_code()==apk.getApp_code())
+				if(a.getApp_code().equals(apk.getApp_code()))
 					flag = false;
 			}
 			if(flag)
 				addApk(apk);
+			else
+				apkMapper.update(apk);
 			SystemConfig config = systemService.getConfig();
 			config.setApp_code(apk.getApp_code());
 			systemService.updateConfig(config);

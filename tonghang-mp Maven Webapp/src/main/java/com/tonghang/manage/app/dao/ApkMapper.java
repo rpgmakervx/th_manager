@@ -9,6 +9,7 @@ public interface ApkMapper {
 	//apk包上传
 	public void save(Apk apk);
 	
+	public void update(Apk apk);
 	//获取所有apk上传记录及其信息
 	public List<Apk> findAllApk();
 	
