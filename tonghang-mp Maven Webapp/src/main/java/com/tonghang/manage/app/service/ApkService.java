@@ -1,6 +1,7 @@
 package com.tonghang.manage.app.service;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -63,12 +64,19 @@ public class ApkService {
 	 * @param request
 	 * @param context
 	 * @return
+	 * notice:从历史版本中检查是否有和当前版本一样的，防止冲突
 	 */
 	public Apk getApkFromConfig(HttpServletRequest request,String context){
 		Apk apk = configReader.getApkMessage(request,context);
 		if(apk!=null){
-			apkConverter.apkConverter(apk);
-			addApk(apk);
+			boolean flag = true;
+			List<Apk> apks = apkMapper.findAllApk();
+			for(Apk a:apks){
+				if(a.getApp_code()==apk.getApp_code())
+					flag = false;
+			}
+			if(flag)
+				addApk(apk);
 			SystemConfig config = systemService.getConfig();
 			config.setApp_code(apk.getApp_code());
 			systemService.updateConfig(config);
