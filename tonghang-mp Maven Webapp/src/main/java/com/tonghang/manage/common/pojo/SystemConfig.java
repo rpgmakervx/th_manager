@@ -6,6 +6,7 @@ public class SystemConfig {
 	private int can_register_user;
 	private int can_login;
 	private int can_upgrade_silently;
+	private int can_upgrade;
 	private int third_adv;
 	private int use_adv;
 	private String app_code;
@@ -80,6 +81,14 @@ public class SystemConfig {
 
 	public void setApp_code(String app_code) {
 		this.app_code = app_code;
+	}
+
+	public int getCan_upgrade() {
+		return can_upgrade;
+	}
+
+	public void setCan_upgrade(int can_upgrade) {
+		this.can_upgrade = can_upgrade;
 	}
 	
 }

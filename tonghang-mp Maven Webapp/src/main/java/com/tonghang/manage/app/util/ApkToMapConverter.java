@@ -5,20 +5,29 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
 import org.springframework.stereotype.Component;
 
 import com.tonghang.manage.app.pojo.Apk;
+import com.tonghang.manage.common.pojo.SystemConfig;
+import com.tonghang.manage.common.service.SystemService;
 import com.tonghang.manage.common.util.TimeUtil;
 @Component("apkToConverter")
 public class ApkToMapConverter {
 
+	@Resource(name="systemService")
+	private SystemService systemService;
+	
 	public Map<String,Object> apkConverter(Apk apk){
+		SystemConfig config = systemService.getConfig();
 		Map<String,Object> msg = new HashMap<String, Object>();
 		Map<String,Object> apkmsg = new HashMap<String, Object>();
 		msg.put("app_code", apk.getApp_code()==null?"暂无内容":apk.getApp_code());
 		msg.put("app_version", apk.getApp_version()==null?"暂无内容":apk.getApp_version());
 		msg.put("context", apk.getContext()==null?"暂无内容":apk.getContext());
 		msg.put("upload_at", apk.getUpload_at()==null?"暂无内容":TimeUtil.getFormatDateString(apk.getUpload_at()));
+		msg.put("can_upgrade", config.getCan_upgrade());
 		apkmsg.put("apk", msg);
 		return apkmsg;
 	}

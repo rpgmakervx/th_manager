@@ -17,6 +17,8 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import com.tonghang.manage.app.pojo.Apk;
 import com.tonghang.manage.app.service.ApkService;
 import com.tonghang.manage.common.controller.BaseController;
+import com.tonghang.manage.common.pojo.SystemConfig;
+import com.tonghang.manage.common.service.SystemService;
 import com.tonghang.manage.common.util.CommonMapUtil;
 import com.tonghang.manage.common.util.RequestUtil;
 
@@ -26,6 +28,8 @@ public class ApkController extends BaseController{
 
 	@Resource(name="apkService")
 	private ApkService apkService;
+	@Resource(name="systemService")
+	private SystemService systemService;
 	/**
 	 * update:2015-10-03
 	 * update:2015-10-02
@@ -59,7 +63,7 @@ public class ApkController extends BaseController{
 	 * 			然后删除解压后的所有文件，修改系统及参数表（system_config）
 	 */
 	@RequestMapping(value="upload",method=RequestMethod.POST)
-	public String uploadApk(HttpServletRequest request,@RequestParam CommonsMultipartFile apk,@RequestParam String context){
+	public String uploadApk(HttpServletRequest request,@RequestParam String context){
 		System.out.println("apk 文案："+context);
 		Apk a = apkService.getApkFromConfig(request, context);
 		if(a!=null){
@@ -108,6 +112,19 @@ public class ApkController extends BaseController{
 	public ResponseEntity<Map<String,Object>> getCurrentApk(){
 		Map<String,Object> result = new HashMap<String, Object>();
 		result.put("result", apkService.getCurrentApk());
+		return new ResponseEntity<Map<String,Object>>(result,HttpStatus.OK);
+	}
+	/***
+	 * 业务功能：完成app升级的开启与关闭
+	 * @param upgrade
+	 * @return
+	 */
+	@RequestMapping(value="canupgrade",method=RequestMethod.POST)
+	public ResponseEntity<Map<String,Object>> setAppUpgrade(@RequestParam int upgrade){
+		Map<String,Object> result = CommonMapUtil.baseMsgToMapConvertor("server normal", 200);
+		SystemConfig config = systemService.getConfig();
+		config.setCan_upgrade(upgrade);
+		systemService.updateConfig(config);
 		return new ResponseEntity<Map<String,Object>>(result,HttpStatus.OK);
 	}
 }

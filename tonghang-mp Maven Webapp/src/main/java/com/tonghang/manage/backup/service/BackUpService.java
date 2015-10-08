@@ -27,8 +27,8 @@ public class BackUpService {
 	 */
 	public void backupDB(String bakName) throws BackupException{
 		try {
-			Runtime.getRuntime().exec(Constant.SHELL_HEAD+Constant.BACKUP_SHELL+Constant.LINUX_BACKUP_PATH+bakName);
-		System.out.println("backup shell :"+Constant.SHELL_HEAD+Constant.BACKUP_SHELL+Constant.LINUX_BACKUP_PATH+bakName);
+			Runtime.getRuntime().exec(Constant.BACKUP_SHELL+Constant.LINUX_BACKUP_PATH+bakName);
+		System.out.println("backup shell :"+Constant.BACKUP_SHELL+Constant.LINUX_BACKUP_PATH+bakName);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			throw new BackupException("数据备份出现异常，请检查服务器！\n操作时间："+TimeUtil.getFormatString(new Date()));
@@ -41,7 +41,7 @@ public class BackUpService {
 			throw new BackupException("没找到该日期的数据备份记录！\n操作时间："+TimeUtil.getFormatString(new Date()));
 		}
 		try {
-			Runtime.getRuntime().exec(Constant.SHELL_HEAD+Constant.RECOVER_SHELL+Constant.LINUX_BACKUP_PATH+"tonghang_"+bakName+".sql");
+			Runtime.getRuntime().exec(Constant.RECOVER_SHELL+Constant.LINUX_BACKUP_PATH+"tonghang_"+bakName+".sql");
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			throw new BackupException("数据恢复出现异常，请检查服务器！\n操作时间："+TimeUtil.getFormatString(new Date()));

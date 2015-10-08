@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.tonghang.manage.ad.service.AdvertiseService;
 import com.tonghang.manage.common.pojo.SystemConfig;
 import com.tonghang.manage.common.service.SystemService;
+import com.tonghang.manage.common.util.CommonMapUtil;
+import com.tonghang.manage.common.util.ConfigToMapConvertoer;
 /**
  * 
  * 每个页面必备index方法
@@ -34,6 +36,8 @@ public class SystemController {
 	private SystemService systemService;
 	@Resource(name="advertiseService")
 	private AdvertiseService advertiseService;
+	@Resource(name="configToMap")
+	private ConfigToMapConvertoer configConverter;
 	/**
 	 * 业务功能：restful风格请求url，转发到index.jsp
 	 * @param session
@@ -90,7 +94,11 @@ public class SystemController {
 		session.setAttribute("sys_cfg", config);
 		return "index";
 	}
-	
+	/**
+	 * 业务功能：
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="adv_url",method=RequestMethod.POST)
 	public ResponseEntity<Map<String,Object>> showUrl(HttpServletRequest request){
 		Map<String,Object> result = new HashMap<String, Object>();
@@ -102,4 +110,5 @@ public class SystemController {
 		result.put("result", msg);
 		return new ResponseEntity<Map<String,Object>>(result,HttpStatus.OK);
 	}
+	
 }

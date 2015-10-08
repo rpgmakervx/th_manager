@@ -81,9 +81,12 @@ textarea{resize: none;}
 			success:function(data){
 				$("#datas").children().remove();
 				var apk = data.result.apk;
-				createTable(apk.app_code,apk.app_version,apk.context,apk.upload_at);
+				createTable(apk.app_code,apk.app_version,apk.context,apk.upload_at,apk.can_upgrade);
 			}
 		})
+	})
+	$("#form").on("submit",function(){
+		$("#context_notice").html("<strong>正在获取和保存apk信息，请稍等...</strong>")
 	})
 	function uploadApk(){
 		$("#context").attr("readonly",true);
@@ -114,13 +117,32 @@ textarea{resize: none;}
 			})
 		}
 	}
-	function createTable(app_code,app_version,context,upload_at){
+	function startOrPause(flag){
+		if(flag==1){
+			$("#start").html("启动");
+			$("#start").attr("href","javascript:startOrPause(0)");
+			flag = 0;
+		}else{
+			$("#start").html("暂停");
+			$("#start").attr("href","javascript:startOrPause(1)");
+			flag = 1;
+		}
+		$.ajax({
+			type:"POST",
+			url:"<%=basePath%>app/canupgrade?upgrade="+flag,
+			dataType:"json",     
+			contentType:"application/json",
+			success:function(data){
+			}
+		});
+	}
+	function createTable(app_code,app_version,context,upload_at,status){
 		$("#datas").append("<tr class='"+app_code+app_version+"'></tr>");
 		$("#datas").children(":last").append("<td>"+upload_at+"</td>");
 		$("#datas").children(":last").append("<td>"+app_code+"</td>");
 		$("#datas").children(":last").append("<td>"+app_version+"</td>");
 		$("#datas").children(":last").append("<td>"+context+"</td>");
-		$("#datas").children(":last").append("<td class='href_link'><a href='#uploadModal' data-toggle='modal'>更新</a> | <a href='#'>启动</a>  "+"${apk_upload_msg}"+"</td>");
+		$("#datas").children(":last").append("<td class='href_link'><a href='#uploadModal' data-toggle='modal'>更新</a> | <a href='javascript:startOrPause("+status+")' id='start'>"+(status==1?"暂停":"启动")+"</a>  "+"${apk_upload_msg}"+"</td>");
 	}
 </script>
 <!--[if lt IE 9]>
@@ -285,7 +307,7 @@ textarea{resize: none;}
 		         	</div>
 		         	<div class="space-10"></div>
 	         		<div align="center">
-		         		<form id="form" enctype ="multipart/form-data" action="<%=basePath%>app/upload" method="post">
+		         		<form id="form" action="<%=basePath%>app/upload" method="post">
 							<div class="row">
 								<div class="form-group name">
 									<label class="col-sm-3 control-label no-padding-right" for="id-date-picker-1">上传apk：</label>
@@ -300,6 +322,7 @@ textarea{resize: none;}
 									<span><small>apk命名建议采用英文字母，配置文件编码采用UTF-8</small></span>
 								</div>
 								<div class="space-10"></div>
+								<form id="form" enctype ="multipart/form-data" action="<%=basePath%>app/upload" method="post">
 								<div class="form-group name">
 									<label class="col-sm-3 control-label no-padding-right" for="reason">更新日志：</label>
 									<div class="input-group col-lg-8 reason">
