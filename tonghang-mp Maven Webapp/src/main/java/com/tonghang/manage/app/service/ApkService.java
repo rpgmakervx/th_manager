@@ -48,7 +48,8 @@ public class ApkService {
 	public boolean apkUnPack(HttpServletRequest request,String apkname){
 		boolean result = false;
 		try {
-			Runtime.getRuntime().exec(Constant.CMD_HEAD+Constant.WIN_UNPACK_SHELL+Constant.WIN_APK_PATH+apkname+" "+ request.getSession().getServletContext().getRealPath(Constant.APK_UNPACK_PATH));
+			Runtime.getRuntime().exec(Constant.SHELL_HEAD+Constant.LINUX_UNPACK_SHELL+Constant.LINUX_APK_PATH_TEST+apkname+" "+ request.getSession().getServletContext().getRealPath(Constant.APK_UNPACK_PATH));
+			System.out.println("apk tool running: \n "+Constant.SHELL_HEAD+Constant.LINUX_UNPACK_SHELL+Constant.LINUX_APK_PATH_TEST+apkname+" "+ request.getSession().getServletContext().getRealPath(Constant.APK_UNPACK_PATH));
 			result = true;
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

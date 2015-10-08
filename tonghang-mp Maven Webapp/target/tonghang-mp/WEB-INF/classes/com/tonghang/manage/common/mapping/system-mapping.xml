@@ -9,9 +9,10 @@
 		update system_config set can_register_user = #{can_register_user},
 		can_login = #{can_login},
 		can_upgrade_silently = #{can_upgrade_silently},
+		can_upgrade = #{can_upgrade},
 		third_adv = #{third_adv},
 		use_adv = #{use_adv},
-		self_adv_url = #{self_adv_url}
+		app_code = #{app_code}
 	</update>
 	<update id="updateUrl" parameterType="java.lang.String">
 		update system_config set self_adv_url = #{self_adv_url}

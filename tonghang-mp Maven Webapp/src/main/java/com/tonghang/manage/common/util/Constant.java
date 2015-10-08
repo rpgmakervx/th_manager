@@ -68,7 +68,7 @@ public class Constant{
 	public static int SUCCEES = 200;
 	/***/
 	public static final String CMD_HEAD = "cmd /c ";
-	public static final String SHELL_HEAD = "/bin/sh -c ";
+	public static final String SHELL_HEAD = "/bin/sh ";
 	/**mysql备份指令*/
 	public static final String BACKUP_SHELL = "mysqldump -h localhost -uroot -p123456 tonghang>";
 	/**mysql恢复指令*/
@@ -89,6 +89,9 @@ public class Constant{
 	public static final String WIN_APK_PATH = "D:/codekit/java/Web/TomCat/apache-tomcat-7.0.40/webapps/tonghang/home/app/";
 	/**apk文件在linux下的全路径*/
 	public static final String LINUX_APK_PATH = "/root/apache-tomcat-7.0.57/webapps/tonghang/home/app/"; 
+	/**apk文件在linux下的全路径 测试用*/
+	public static final String LINUX_APK_PATH_TEST = "/root/tomcat-7-test1/webapps/tonghang/home/app/"; 
+	
 	/**apk配置文件未知*/
 	public static final String ANDROID_MANIFAST_PATH = "home/unpack/AndroidManifest.xml";
 	

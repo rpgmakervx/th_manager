@@ -87,7 +87,7 @@
                            	 用户模块
                         </small>
                     </a>
-                    <a href="#" class="navbar-brand">
+                    <a href="<%=basePath%>advertise/indexs" class="navbar-brand">
                         <small>
                             	运营模块
                         </small>
@@ -207,13 +207,13 @@
                                                     <h4 class="blue">
                                                         <span id="online_color" class="label label-info">
                                                             <i  class="icon-circle smaller-80 align-middle"></i>
-                                                            <span id="isonline">在线</span>
+                                                            <span id="isonline"></span>
                                                         </span>
                                                     </h4>
 													<h4 class="red">
                                                         <span id="isolate_color" class="label label-info">
                                                             <i  class="icon-circle smaller-80 align-middle"></i>
-                                                            <span id="isolatnote">正常</span>
+                                                            <span id="isolatnote"></span>
                                                         </span>
                                                     </h4>
                                                     <div class="profile-user-info">
@@ -221,21 +221,21 @@
                                                             <div class="profile-info-name"> 昵称 </div>
 
                                                             <div class="profile-info-value">
-                                                                <span id="nickname">rpgmakervx</span>
+                                                                <span id="nickname"></span>
                                                             </div>
                                                         </div>
 														<div class="profile-info-row">
                                                             <div class="profile-info-name"> 邮箱 </div>
 
                                                             <div class="profile-info-value">
-                                                                <span id="email">583110127@qq.com</span>
+                                                                <span id="email"></span>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name"> 联系电话 </div>
 
                                                             <div class="profile-info-value">
-                                                                <span id="phone">13652179825</span>
+                                                                <span id="phone"></span>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
@@ -243,21 +243,21 @@
 
                                                             <div class="profile-info-value">
                                                                 <i class="icon-map-marker light-orange bigger-110"></i>
-                                                                <span id="place">山东-东营</span>
+                                                                <span id="place"></span>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name">性别 </div>
     
                                                             <div class="profile-info-value">
-                                                                <span id="sex">男</span>
+                                                                <span id="sex"></span>
                                                             </div>
                                                         </div>
                                                         <div class="profile-info-row">
                                                             <div class="profile-info-name"> 年龄 </div>
 
                                                             <div class="profile-info-value">
-                                                                <span id="age">38</span>
+                                                                <span id="age"></span>
                                                             </div>
                                                         </div>
 
@@ -265,7 +265,7 @@
                                                             <div class="profile-info-name"> 创号时间 </div>
 
                                                             <div class="profile-info-value">
-                                                                <span id="created_at">2015-6-8</span>
+                                                                <span id="created_at"></span>
                                                             </div>
                                                         </div>
 
@@ -273,7 +273,7 @@
                                                             <div class="profile-info-name"> 上次登录时间 </div>
 
                                                             <div class="profile-info-value">
-                                                                <span id="lase_login_at">2015-8-17</span>
+                                                                <span id="lase_login_at"></span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -292,7 +292,7 @@
                                             	<div class="col-sm-2 col-sm-offset-4">
                                                 	<a id="operation" data-toggle="modal" href="#myModal" class="btn btn-sm btn-block btn-danger">
                                                         <i class="icon-ban-circle bigger-120"></i>
-                                                        <span id="isolate" class="bigger-110">封号</span>
+                                                        <span id="isolate" class="bigger-110"></span>
                                                     </a>
                                                 </div>
 											</div>	
@@ -385,7 +385,6 @@
 		      	</div><!-- /.modal-content -->
 			</div>
 	    </div><!-- /.modal -->
-	    <form action="" method=""></form>
 		<!--[if IE]>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <![endif]-->

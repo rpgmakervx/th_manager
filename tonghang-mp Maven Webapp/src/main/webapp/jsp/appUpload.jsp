@@ -84,35 +84,35 @@ textarea{resize: none;}
 				createTable(apk.app_code,apk.app_version,apk.context,apk.upload_at);
 			}
 		})
-		$("#form").on("submit",function(){
-			var apkname = $("#apk").val();
-			var context = $("#context").val();
-			if(! (/\.(apk)$/i).test(apkname)){
-				$("#apk_notice").html("<strong class='red'>请选apk文件！</strong>")
-				return false;
-			}
-			return true;
-		})
 	})
 	function uploadApk(){
+		$("#context").attr("readonly",true);
+		$("#apk_notice").html("<strong>apk正在上传中，请稍等...</strong>"); 
 		var apkform = $("#apk")[0]
+		var apkname = $("#apk").val();
 		var src = window.URL.createObjectURL(apkform.files[0])	
 		var formData = new FormData();
 		formData.append("apk",apkform.files[0])
-		$.ajax({
-			processData : false,
-			contentType : false,  
-			data : formData,
-			type:"POST",
-			url:"<%=basePath%>app/unpack",     
-			success:function(data){
-				if(data.result.code==200){
-					$("#apk_notice").html("<strong class='green'>apk验证通过！</strong>");
-				}else{
-					$("#apk_notice").html("<strong class='red'>上传失败！请检查服务器后重新上传。</strong>")
+		if(! (/\.(apk)$/i).test(apkname)){
+			$("#apk_notice").html("<strong class='red'>请选apk文件！</strong>")
+		}else{
+			$.ajax({
+				processData : false,
+				contentType : false,  
+				data : formData,
+				type:"POST",
+				url:"<%=basePath%>app/unpack",     
+				success:function(data){
+					if(data.result.code==200){
+						$("#apk_notice").html("<strong class='green'>apk验证通过！</strong>");
+						$("#context").attr("readonly",false);
+						$("#context").html("")
+					}else{
+						$("#apk_notice").html("<strong class='red'>上传失败！请检查服务器后重新上传。</strong>")
+					}
 				}
-			}
-		})
+			})
+		}
 	}
 	function createTable(app_code,app_version,context,upload_at){
 		$("#datas").append("<tr class='"+app_code+app_version+"'></tr>");
@@ -303,7 +303,7 @@ textarea{resize: none;}
 								<div class="form-group name">
 									<label class="col-sm-3 control-label no-padding-right" for="reason">更新日志：</label>
 									<div class="input-group col-lg-8 reason">
-										<textarea required class="form-control" name="context" id="cotext" rows="5"></textarea>
+										<textarea required class="form-control" name="context" id="context" rows="5"></textarea>
 									</div>
 								</div>
 								<div class="col-sm-12">
@@ -313,7 +313,7 @@ textarea{resize: none;}
 							<div class="modal-footer ">
 								<button class="btn btn-info"  type="submit">
 									<i class="icon-ok bigger-120"></i>
-									Submit
+									提交更新
 								</button>
 							</div>		
 						</form>

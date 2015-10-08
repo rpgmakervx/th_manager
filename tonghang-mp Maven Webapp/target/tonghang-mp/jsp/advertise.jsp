@@ -58,12 +58,11 @@ body,html {
 
 <!-- self code-->
 <script type="text/javascript">
-
 	$(function(){
 		var before_change
 		var btn_choose
 		var no_icon
-		btn_choose = "支持拖拽哦亲~~";
+		btn_choose = "请选择图片文件";
 		no_icon = "icon-picture";
 		before_change = function(files, dropped) {
 			var allowed_files = [];
@@ -107,7 +106,6 @@ body,html {
 			}else{
 				$("#form").submit()
 			}
-			
 		})
 	})
 	
@@ -134,7 +132,7 @@ body,html {
 			</div><!-- /.navbar-header -->
 			<span class="col-xs-2"></span>
 			<div class="navbar-header " id="nav_model" role="navigation">
-               	<a href="#" class="navbar-brand">
+               	<a href="<%=basePath%>admin/index" class="navbar-brand">
                        <small>
                            	全局模块
                        </small>
@@ -254,6 +252,7 @@ body,html {
 													<i class="icon-ok bigger-100"></i>
 													Submit
 												</button>
+												<span class="notification">${adv_notification}</span>
 											</div>
 										</div>
 									</form>

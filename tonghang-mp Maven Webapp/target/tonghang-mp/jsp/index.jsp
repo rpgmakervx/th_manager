@@ -190,6 +190,11 @@
 							</a>
 						</li>
 						<li>
+							<a href="<%=basePath%>app/index" class="dropdown-toggle">
+								<center><span class="menu-text">app版本管理</span></center>
+							</a>
+						</li>
+						<li>
 							<a href="<%=basePath%>backup/index" class="dropdown-toggle">
 								<center><span class="menu-text">数据备份和还原</span></center>
 							</a>
@@ -234,7 +239,7 @@
                                    	 </strong>，
 									欢迎使用 同行后台管理系统，本系统由
 									<strong class="green">
-										<big>同行科技有限公司</big>
+										<big>天津行动科技有限公司</big>
 									</strong> 开发,详情请拨打咨询电话：13652179825.	
 								</div>
 							</div><!-- /.col -->
@@ -253,7 +258,7 @@
                                         </div>
                                         <div class="col-lg-3">
                                             <h2><strong>升级管理</strong></h2>
-                                            <h5><strong>静默升级(OFF)或者提示升级(ON)</strong></h5>
+                                            <h5><strong>提示升级(OFF)或者静默升级(ON)</strong></h5>
                                         </div>
                                         
                             		</div>
@@ -296,10 +301,6 @@
                                             <h2><strong>第三方广告</strong></h2>
                                             <h5><strong>关闭(OFF)开启(ON)</strong></h5>
                                         </div>
-                                        <div class="col-lg-3">
-                                        	 <h2><strong>本站广告</strong></h2>
-                                        	<h5><strong>选择当前广告地址</strong></h5>
-                                        </div>
                                     </div>
                                     <div class="col-lg-12" >
                                     	<div class="col-lg-3">
@@ -316,12 +317,6 @@
                                                 <span class="lbl"></span>
                                             </label>
                                         </div> 
-                                        <div class="col-md-6">
-	                                        <label class="col-md-6">
-	                                            <select id="url" name="url" readonly class="col-md-9" >
-	                                            </select>
-	                                        </label>
-	                                    </div>
                                     </div>
                                     <div class="col-lg-12">
                             			<div class="block-h-4"></div>
