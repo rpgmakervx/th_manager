@@ -326,7 +326,7 @@ textarea{resize: none;}
 								<div class="form-group name">
 									<label class="col-sm-3 control-label no-padding-right" for="reason">更新日志：</label>
 									<div class="input-group col-lg-8 reason">
-										<textarea required class="form-control" name="context" id="context" rows="5"></textarea>
+										<textarea required class="form-control" name="context" id="context" rows="5" readonly></textarea>
 									</div>
 								</div>
 								<div class="col-sm-12">

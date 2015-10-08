@@ -11,4 +11,7 @@
 	<insert id="save" parameterType="com.tonghang.manage.app.pojo.Apk">
 		insert into apk (app_code,app_version,context,upload_at) values(#{app_code},#{app_version},#{context},#{upload_at})
 	</insert>
+	<update id="update" parameterType="com.tonghang.manage.app.pojo.Apk">
+		update apk set context = #{context} where app_code = #{app_code}
+	</update>
 </mapper>
